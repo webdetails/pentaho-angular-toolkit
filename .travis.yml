@@ -1,0 +1,39 @@
+env:
+  global:
+  - GH_USER: francisco-guilherme
+  - GH_REPO: pentaho-angular-toolkit
+  - secure: "yxMgIrazkm81Nh7b+7SagrDNOY9t/Zrwr7nK/Ld18emvhXc8mqzRFXHfA9cTYc9ZTC6yYX1lzWaGO1UkRPQq18zmwPcwUQEqjNj0PSFo+5+DBrkjm3vLl1kB2S8A+tiI880sJ3Bam+nfCBhBVnN2a188SPcvOxr6+qqFSSwF8KWGPzSj4F7JDr6Yl53akNN25MDhnxwxvHHPzLbEL++kiRvFWrLTDqleNjJT2JH7DTFohFFhsPxQ7PqarkG1Jo9Mf6OwI7nsH+v7+EP/NfaC46iMsUqBywZPp5lx1izlvv5VbGxeDYyodNXUgMuEvNEu9cBAjSDXQXeJVb1AItg/KOOF9gxvsA75WLWYsj+eWZM8kxdawmXXALlGhnISmZGWurLaX3PmEs62NURrugZyE13HYAftGQsD8eS1GNFK8HT3ldhalvOVSGr5u4OEfPuLFE2tnFtr9cerkkAzSduD3mfUf5QHdPNYomGckZYHRTCShFlHML2mvuvX35yZ5DL6Ua9y5GPvbRyq8wtYlMovMxWc2sP7KMpU7hZOGU17Ria1/l5jCIy4x9dj4ySSKNJif4ov38Tqla8dGrf9n+rt5aRVxaMR0e2kwTPrBJUz2qrS59sprSXCsOUarUnXYGb9w8nBeJAjpnq1zdGt02OZZwt/6cgqQ8CGTw3auQvAmGE="
+  - secure: "Ow9nfNG2WS/qFUyIqgzm+Zt3qf+xtrj8Ejl6Q1SPQhefXb4SvFHxJmaVmNSskKNh1Yu5MQPNo3O4oi+CYYLs7ZFdHVOQKZmpiv5bC5NtA/oiDmapLtvPeEGW8zd6Tdw+hp8YYPzCvrYV3PDlAUDFJ4ZPsDOzH8sV2zc0LlsPuuj1t6cpPv6mOQCsYKQsB0qrF6zZ6WM8/TAfGxotEzOOoE7hiqY/a+2L+cMP/vDrhqoRuL38Cj6fJA0hMbd86BSAhdaUPkF+y63awUOaMRFh8iTGafYX86D8pfxnNflyPsdYOqkFDWQB3n5r1on/vRPHwBj4EjxXJJNL/OLrWAC1HCDbjZNDqwxtCYhgRGtYf1fvPqoHCbUfIcv8AbwYUzRiCnqHNCj+vF0+YEAJSUouY3FRItpmF0JBDaqRsiSVY/dPNT6EBIo1Tbahi9WTEMgzftk3EPLlpLs/7IRzVOMYYy2koIkAhsLtA3fLZogv5+O4/v2xcsIjlVLy+F6pX6K1925LnYWnnQK3gjUTMiF99tMMeIgiJsC6OK5qtcQZ6inlCM02WtLDM6hIkYmAf2cVu0mGFQsDsXEanhLJYIoqQQZ77bTyLPRnUX7x7IVNC/axbQAFtwfoYR/JTEg7ZpFjEshS22fWR/OP5JOy+aDhhHmLS6mvOlMXiJe3DK70Fw0="
+
+language: node_js
+node_js:
+- '0.10'
+
+before_install:
+- npm install -g npm@2
+
+install:
+- npm install -g gulp
+- npm install
+
+script:
+- gulp bump --version $TRAVIS_BRANCH
+- gulp deploy
+
+before_deploy:
+- cp -r module_dist $GH_REPO
+- zip -r $GH_REPO-$TRAVIS_BRANCH.zip $GH_REPO -x *.git*
+
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file: $GH_REPO-$TRAVIS_BRANCH.zip
+  on:
+    tags: true
+    repo: $GH_USER/$GH_REPO
+
+after_deploy:
+- bash _scripts/deploy-module.sh
+- bash _scripts/deploy-npm.sh
+
+

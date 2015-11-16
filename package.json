@@ -1,0 +1,60 @@
+{
+  "name": "pentaho-angular-toolkit",
+  "version": "0.0.0",
+  "description": "Angular toolkit to Pentaho CTools dashboards.",
+  "repository": {
+    "type": "git",
+    "url": "francisco-guilherme/pentaho-angular-toolkit"
+  },
+  "authors": [
+    {
+      "name": "Gonçalo Neto",
+      "email": "goncalo.neto@webdetaisl.pt",
+      "url": "https://github.com/"
+    },
+    {
+      "name": "Francisco Guilherme",
+      "email": "francisco.guilherme@webdetaisl.pt",
+      "url": "https://github.com/francisco-guilherme"
+    }
+  ],
+  "license": "MPL 2.0",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "clone": "^1.0.2",
+    "del": "^2.0.2",
+    "easyjson": "^0.1.2",
+    "glob": "^5.0.15",
+    "gulp": "^3.9.0",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-bump": "^1.0.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-clean-dest": "^0.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-file": "^0.2.0",
+    "gulp-jscs": "^3.0.2",
+    "gulp-jshint": "^1.12.0",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-task-loader": "^1.2.3",
+    "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.0.2",
+    "jasmine-core": "^2.3.4",
+    "jshint-stylish": "^2.0.1",
+    "jsonfile": "^2.2.3",
+    "karma": "^0.13.15",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "key-del": "^1.2.2",
+    "merge-stream": "^1.0.0",
+    "phantomjs": "^1.9.18",
+    "run-sequence": "^1.1.4",
+    "underscore": "^1.8.3",
+    "yargs": "^3.29.0"
+  }
+}

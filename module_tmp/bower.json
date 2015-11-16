@@ -1,0 +1,27 @@
+{
+  "name": "pentaho-angular-toolkit",
+  "authors": [
+    {
+      "name": "Gonçalo Neto",
+      "email": "goncalo.neto@webdetaisl.pt",
+      "homepage": "https://github.com/gundisalwa"
+    },
+    {
+      "name": "Francisco Guilherme",
+      "email": "francisco.guilherme@webdetaisl.pt",
+      "homepage": "https://github.com/francisco-guilherme"
+    }
+  ],
+  "description": "Angular toolkit to Pentaho CTools dashboards.",
+  "main": "pentaho-angular-toolkit.js",
+  "license": "MPL 2.0",
+  "homepage": "francisco-guilherme/pentaho-angular-toolkit",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "package.json"
+  ]
+}
