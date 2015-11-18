@@ -8,9 +8,14 @@ var _ 			= require('underscore');
 
 
 /**
+ * Build module
+ * Update package.json from root and move to module_dist
+ * Copy files listed in config > module.files to module_dist
  *
+ * @return {Stream}
  */
 module.exports = function() {
+	$.log('Building module');
 
 	var rootPackage = jsonfile.readFileSync('./package.json');
 	var newPackage 	= _.omit(rootPackage, ['devDependencies', 'scripts']);
