@@ -18,7 +18,6 @@ install:
 
 script:
 - gulp bump --version $TRAVIS_BRANCH
-- gulp module
 
 before_deploy:
 - cp -r module_dist $GH_REPO
