@@ -17,7 +17,7 @@ gulp.task('default', function(cb){
 /**
  * Clean dist folders
  * Test and validate code
- * Optimiza angular files
+ * Optimize angular files
  * Create dist module
  *
  * @param  {Function} done - callback when complete
