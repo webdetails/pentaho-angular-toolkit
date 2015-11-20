@@ -5,6 +5,7 @@ var util = require('gulp-util');
 module.exports = {
     dev_path: './src/',
     dist_path: './dist/',
+    doc_path: './doc/',
     module: {
         name: 'pentaho-angular-toolkit',
         dist_path: 'module_dist',
