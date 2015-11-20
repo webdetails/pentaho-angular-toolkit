@@ -18,9 +18,10 @@ install:
 - npm install
 
 script:
-- gulp bump --version $TRAVIS_BRANCH
+- gulp test
 
 before_deploy:
+- gulp bump --version $TRAVIS_BRANCH
 - cp -r module_dist $GH_REPO
 - zip -r $GH_REPO-$TRAVIS_BRANCH.zip $GH_REPO -x *.git*
 
