@@ -7,7 +7,7 @@ var del 	= require('del');
  * Remove all files from the dist folder
  */
  module.exports = function() {
-    $.log('Cleaning dist folders');
+    $.log('Cleaning dist and doc folders');
 
-    return del.sync([$.dist_path, $.module.dist_path]);
+    return del.sync([$.dist_path, $.module.dist_path, $.doc_path ]);
 };
