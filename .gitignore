@@ -1,5 +1,6 @@
-.idea
-module_dist
-dist
-node_modules
-npm-debug.log
+/.idea/
+/module_dist/
+/dist/
+/node_modules/
+/npm-debug.log
+/doc/
