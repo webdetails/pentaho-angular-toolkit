@@ -11,8 +11,8 @@
   // TODO: Add attribute version for single parameter / single event.
 
   /* @ngInject */
-  cdfDashboard.$inject = ['$parse', 'CdfHelper'];
-  function cdfDashboard($parse, CdfHelper) {
+  cdfDashboard.$inject = ['$parse'];
+  function cdfDashboard($parse) {
     var directive = {
       bindToController: true,
       controller: CdfDashboardController,
@@ -36,7 +36,7 @@
         return controller.path;
       }, handlePathChange);
 
-      function handlePathChange(newPath, oldPath) {
+      function handlePathChange(newPath) {
         if (newPath) {
           clearWatcher();
           controller.setNewDashboard(newPath, element)
@@ -53,8 +53,7 @@
           return controller.getParameters();
         }, handleParametersChange, isDeepWatch());
 
-        function handleParametersChange(newParameters, oldParameters) {
-          var changeParameters = {};
+        function handleParametersChange(newParameters) {
           forEach(newParameters, function(value, name) {
             if (!equals(value, dash.getParameterValue(name))) {
               dash.fireChange(name, value);

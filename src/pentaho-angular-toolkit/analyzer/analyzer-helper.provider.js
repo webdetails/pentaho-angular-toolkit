@@ -30,10 +30,6 @@
       return _basePath;
     }
 
-    function getEndpointPath(endpoint) {
-      return getBasePath() + '/' + endpoint;
-    }
-
     function getAnalysisPath(config) {
       var url = ':basePath/:endpoint';
       var params = {
@@ -74,6 +70,7 @@
 
       function onAnalyzerLoad(api, frameId) {
         if (onLoadHandlers[frameId]) {
+          /* jshint validthis: true */
           onLoadHandlers[frameId].apply(this, arguments);
         }
       }

@@ -1,6 +1,6 @@
 (function(angular) {
   'use strict';
-    
+
   var copy = angular.copy;
   var forEach = angular.forEach;
 
@@ -39,7 +39,7 @@
   }
 
   // Arguments: object1, object2, ... , objectN, key
-  function popFirstKey(object1, object2, objectN, _key_) {
+  function popFirstKey() {
 
     var objects = Array.prototype.slice.call(arguments);
     var key = objects.pop();

@@ -52,8 +52,8 @@
   }
 
   // TODO: Move some of the API to the controller, for sharing with other directives
-  AnalyzerViewController.$inject = ['$scope'];
-  function AnalyzerViewController($scope) {
+  AnalyzerViewController.$inject = [];
+  function AnalyzerViewController() {
 
   }
 
