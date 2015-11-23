@@ -10,11 +10,11 @@ var Server 	= require('karma').Server;
  *
  * @param  {Function} done - Callback to fire when karma is done
  */
- module.exports = function(done) {
- 	$.log('Runing karma tests');
+module.exports = function(done) {
+  $.log('Runing karma tests');
 
- 	new Server({
- 		configFile: __dirname + '/../karma.conf.js',
- 		singleRun: true
- 	}, done).start();
- };
+  new Server({
+    configFile: __dirname + '/../karma.conf.js',
+    singleRun: true
+  }, done).start();
+};

@@ -16,12 +16,12 @@ var argv 		= require('yargs').argv;
  * @return {Stream}
  */
 module.exports = function() {
-	$.log('Bumping and updating version in *.json files');
+  $.log('Bumping and updating version in *.json files');
 
-	var version = argv.version ? {version: argv.version}  : null;
-	var type 	= argv.type ? {type: argv.type}  : '';
+  var version = argv.version ? {version: argv.version}  : null;
+  var type 	= argv.type ? {type: argv.type}  : '';
 
-	return gulp.src('./*.json')
-		.pipe(bump(version ? version : type))
-		.pipe(gulp.dest('./'));
+  return gulp.src('./*.json')
+      .pipe(bump(version ? version : type))
+      .pipe(gulp.dest('./'));
 };
