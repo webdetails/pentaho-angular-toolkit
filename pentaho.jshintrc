@@ -1,0 +1,27 @@
+{
+  "curly": true,
+  "sub": true,
+  "eqeqeq": true,
+  "forin": true,
+  "immed": true,
+  "latedef": false,
+  "noarg": true,
+  "nonbsp": true,
+  "nonew": true,
+  "singleGroups": false,
+  "strict": true,
+  "undef": true,
+  "eqnull":true,
+  "unused": true,
+  "globals": {
+    "define": false,
+    "require": false,
+    "CONTEXT_PATH": true,
+    "console": false,
+    "describe": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "it": false,
+    "expect": false
+  }
+}
