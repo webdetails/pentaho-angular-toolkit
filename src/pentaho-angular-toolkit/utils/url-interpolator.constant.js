@@ -2,8 +2,8 @@
   var copy = angular.copy,
       forEach = angular.forEach;
 
-  angular.module( 'vertex.utils' )
-      .constant( 'UrlInterpolator' , interpolateUrl );
+  angular.module('pat.utils')
+      .constant('UrlInterpolator', interpolateUrl);
 
   function interpolateUrl( url, params, data ) {
     params = copy( params || {} );

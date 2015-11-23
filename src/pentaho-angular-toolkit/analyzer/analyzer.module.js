@@ -1,8 +1,8 @@
 ( function () {
   'use strict';
 
-  angular.module( 'vertex.analyzer', [
-  	'vertex.utils'
-  ] );
+  angular.module('pat.analyzer', [
+      'pat.utils'
+  ]);
 
 } )();

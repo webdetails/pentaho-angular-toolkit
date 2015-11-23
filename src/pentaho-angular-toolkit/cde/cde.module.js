@@ -1,8 +1,8 @@
 ( function () {
   'use strict';
 
-  angular.module( 'vertex.cde', [
-  	'vertex.utils'
-  ] );
+  angular.module('pat.cde', [
+      'pat.utils'
+  ]);
 
 } )();

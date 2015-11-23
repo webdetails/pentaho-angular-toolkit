@@ -1,10 +1,8 @@
 ( function () {
   'use strict';
 
-  var forEach = angular.forEach;
-
-  angular.module( 'vertex.cdf' )
-     .provider( 'CdfHelper' , CdfHelperProvider );
+  angular.module('pat.cdf')
+      .provider('CdfHelper', CdfHelperProvider);
 
   /* @ngInject */
   CdfHelperProvider.$inject = [ ];

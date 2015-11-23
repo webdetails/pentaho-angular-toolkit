@@ -1,8 +1,6 @@
 ( function () {
   'use strict';
 
-  angular.module( 'vertex.cdf', [
-
-  ] );
+  angular.module('pat.cdf', []);
 
 } )();

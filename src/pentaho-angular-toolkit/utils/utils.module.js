@@ -1,7 +1,7 @@
 ( function () {
   'use strict';
 
-  angular.module( 'vertex.utils', [
+  angular.module('pat.utils', []);
 
   ] );
 

@@ -6,9 +6,9 @@
       isString = angular.isString,
       isFunction = angular.isFunction;
 
-  angular.module( 'vertex.analyzer' )
-     .provider( 'AnalyzerHelper' , AnalyzerHelperProvider )
-     .config( config );
+  angular.module('pat.analyzer')
+      .provider('AnalyzerHelper', AnalyzerHelperProvider)
+      .config(config);
 
   config.$inject = ['AnalyzerHelperProvider'];
   function config ( AnalyzerHelperProvider ) {

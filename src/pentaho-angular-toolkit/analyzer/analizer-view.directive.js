@@ -1,8 +1,8 @@
 ( function () {
   'use strict';
 
-  angular.module( 'vertex.analyzer' )
-    .directive( 'analyzerView' , analyzerView );
+  angular.module('pat.analyzer')
+      .directive('patAnalyzerView', analyzerView);
 
   // TODO: Add attribute version for single parameter / single event.
 

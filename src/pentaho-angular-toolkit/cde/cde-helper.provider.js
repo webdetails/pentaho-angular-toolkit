@@ -3,9 +3,9 @@
 
   // TODO: Most of this should probably move to a specific endpoints service that the other modules could use
 
-  angular.module( 'vertex.cde' )
-     .provider( 'CdeHelper' , CdeHelperProvider )
-     .config( config );
+  angular.module('pat.cde')
+      .provider('CdeHelper', CdeHelperProvider)
+      .config(config);
 
   config.$inject = [ 'CdeHelperProvider' ];
   function config ( CdeHelperProvider ){

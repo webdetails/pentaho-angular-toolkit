@@ -5,8 +5,8 @@
       isFunction = angular.isFunction,
       equals = angular.equals;
 
-  angular.module( 'vertex.cdf' )
-    .directive( 'cdfDashboard' , cdfDashboard );
+  angular.module('pat.cdf')
+      .directive('patCdfDashboard', cdfDashboard);
 
   // TODO: Add attribute version for single parameter / single event.
 
