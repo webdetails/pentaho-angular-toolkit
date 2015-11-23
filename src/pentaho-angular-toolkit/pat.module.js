@@ -1,4 +1,4 @@
-( function () {
+(function(angular) {
   'use strict';
 
   angular.module('pat', [
@@ -7,4 +7,4 @@
       'pat.analyzer'
   ]);
 
-} )();
+})(window.angular);

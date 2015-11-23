@@ -1,4 +1,4 @@
-( function () {
+(function(angular) {
   'use strict';
 
   // TODO: Most of this should probably move to a specific endpoints service that the other modules could use
@@ -7,41 +7,41 @@
       .provider('CdeHelper', CdeHelperProvider)
       .config(config);
 
-  config.$inject = [ 'CdeHelperProvider' ];
-  function config ( CdeHelperProvider ){
+  config.$inject = ['CdeHelperProvider'];
+  function config(CdeHelperProvider) {
     CdeHelperProvider.setBasePath('/pentaho/plugin/pentaho-cdf-dd');
   }
 
   /* @ngInject */
-  CdeHelperProvider.$inject = [ 'UrlInterpolator' ];
-  function CdeHelperProvider ( UrlInterpolator ) {
+  CdeHelperProvider.$inject = ['UrlInterpolator'];
+  function CdeHelperProvider(UrlInterpolator) {
 
     var _basePath = '';
 
     this.setBasePath = setBasePath;
 
-    function setBasePath ( path ) {
+    function setBasePath(path) {
       _basePath = path;
     }
 
-    function getBasePath () {
+    function getBasePath() {
       return _basePath;
     }
 
-    function getDashboardPath( path ) {
+    function getDashboardPath(path) {
       var url = ':basePath/api/:endpoint';
 
-      return new UrlInterpolator( url , {
+      return new UrlInterpolator(url, {
         basePath: getBasePath(),
         endpoint: 'renderer/getDashboard',
         path: path
-      } ).getUrl;
+      }).getUrl;
     }
 
     this.$get = CdeHelper;
 
-    CdeHelper.$inject = ['$q'];
-    function CdeHelper ( $q ) {
+    CdeHelper.$inject = [ ];
+    function CdeHelper() {
 
       var service = {
         getDashboardPath: getDashboardPath
@@ -51,4 +51,4 @@
     }
   }
 
-} )();
+})(window.angular);
