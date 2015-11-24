@@ -10,9 +10,9 @@ var shell			= require('gulp-shell');
  * @return {Stream}
  */
 module.exports = function() {
-	$.log('Creating documentation');
+  $.log('Creating documentation');
 
-	return gulp
-		.src([$.dev_path + $.module.name + '/**/*.js'])
-		.pipe( shell('jsdoc <%= file.path %> -d ' + $.doc_path ) );
+  return gulp
+      .src([$.dev_path + $.module.name + '/**/*.js'])
+      .pipe(shell('jsdoc <%= file.path %> -d ' + $.doc_path));
 };

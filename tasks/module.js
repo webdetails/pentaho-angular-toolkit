@@ -6,7 +6,6 @@ var file 		= require('gulp-file');
 var jsonfile 	= require('jsonfile');
 var _ 			= require('underscore');
 
-
 /**
  * Build module
  * Update package.json from root and move to module_dist
@@ -15,12 +14,12 @@ var _ 			= require('underscore');
  * @return {Stream}
  */
 module.exports = function() {
-	$.log('Building module');
+  $.log('Building module');
 
-	var rootPackage = jsonfile.readFileSync('./package.json');
-	var newPackage 	= _.omit(rootPackage, ['devDependencies', 'scripts']);
+  var rootPackage = jsonfile.readFileSync('./package.json');
+  var newPackage 	= _.omit(rootPackage, ['devDependencies', 'scripts']);
 
-	return gulp.src($.module.files)
-		.pipe(file('package.json', JSON.stringify(newPackage, null, 4)))
-		.pipe(gulp.dest($.module.dist_path));
+  return gulp.src($.module.files)
+  .pipe(file('package.json', JSON.stringify(newPackage, null, 4)))
+  .pipe(gulp.dest($.module.dist_path));
 };
