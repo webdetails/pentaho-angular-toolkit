@@ -10,7 +10,19 @@
 
   // TODO: Add attribute version for single parameter / single event.
 
-  /* @ngInject */
+  /**
+   * @ngdoc directive
+   * @name pat.cdf.directive:patCdfDashboard
+   * @scope
+   * @restrict EA
+   *
+   * @param {string} path Url from where the dashboard definition should be fetched.
+   * @param {object=} parameters Map or expressions to bind to dashboard parameters.
+   * @param {object=} events Map or expressions to run when a dashboard event is fired.
+   * These are usually callback functions.
+   * @param {boolean=} deep-watch Expression that, when evaluated, controls whether the
+   * parameter expressions should watch deeply or shallowly.
+   */
   cdfDashboard.$inject = ['$parse'];
   function cdfDashboard($parse) {
     var directive = {

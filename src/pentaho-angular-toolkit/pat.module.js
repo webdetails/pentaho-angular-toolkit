@@ -1,10 +1,17 @@
+/**
+ * @typedef dashboard
+ */
+/**
+ * @typedef element
+ */
+
+
 (function(angular) {
   'use strict';
 
   /**
-   *
-   * @namespace utils
-   * @memberOf pat
+   * @ngdoc overview
+   * @name pat
    */
   angular.module('pat', [
      'pat.cdf',
