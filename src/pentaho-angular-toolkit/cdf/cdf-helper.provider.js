@@ -1,3 +1,4 @@
+
 (function(angular) {
   'use strict';
 
@@ -10,6 +11,10 @@
 
     this.$get = CdfHelper;
 
+    /**
+     * @ngdoc service
+     * @name pat.cdf.service:CdfHelper
+     */
     CdfHelper.$inject = ['$q'];
     function CdfHelper($q) {
 
@@ -32,6 +37,17 @@
         return deferred.promise;
       }
 
+      /**
+       * @ngdoc method
+       * @name pat.cdf.service:CdfHelper#getNewDashboard
+       * @methodOf pat.cdf.service:CdfHelper
+       * @description TODO: add description
+       *
+       * @param {string} path something something
+       * @param {element} element something something
+       *
+       * @returns {dashboard} something something
+       */
       function getNewDashboard(path, element) {
         return (getDashboardConstructor(path).then(mountDashboard));
 
@@ -40,6 +56,15 @@
         }
       }
 
+      /**
+       * @ngdoc method
+       * @name pat.cdf.service:CdfHelper#renderDashboard
+       * @methodOf pat.cdf.service:CdfHelper
+       *
+       * @param {dashboard} dash something something
+       *
+       * @returns {promise} something something
+       */
       function renderDashboard(dash) {
         var deferred = $q.defer();
 

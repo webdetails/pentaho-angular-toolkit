@@ -6,7 +6,15 @@
 
   // TODO: Add attribute version for single parameter / single event.
 
-  /* @ngInject */
+  /**
+   * @ngdoc directive
+   * @name pat.analyzer.directive:patAnalyzerView
+   * @scope
+   * @restrict EA
+   *
+   * @param {object} config Analyzer view configuration object.
+   * @param {function=} on-load Function to call when the analyzer view loads.
+   */
   analyzerView.$inject = ['AnalyzerHelper', 'uuid'];
   function analyzerView(AnalyzerHelper, uuid) {
     var directive = {

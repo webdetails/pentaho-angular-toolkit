@@ -2,7 +2,8 @@
 
 var $	 			= require('../gulp.config.js');
 var gulp			= require('gulp');
-var shell			= require('gulp-shell');
+var gulpDocs = require('gulp-ngdocs');
+
 
 /**
  * Create jsdoc documentation
@@ -12,7 +13,15 @@ var shell			= require('gulp-shell');
 module.exports = function() {
   $.log('Creating documentation');
 
+  var options = {
+    scripts: [
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
+      'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js'
+    ]
+  };
+
   return gulp
-      .src([$.dev_path + $.module.name + '/**/*.js'])
-      .pipe(shell('jsdoc <%= file.path %> -d ' + $.doc_path));
+    .src(['src/**/*.js'])
+    .pipe(gulpDocs.process(options))
+    .pipe(gulp.dest('doc'));
 };
