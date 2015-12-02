@@ -11,9 +11,10 @@
   /**
    * @ngdoc function
    * @name pat.utils.service:uuid
-   * @description Some description
+   * @description Uuid generator. It is declared as a constant, so it can
+   * be injected both on providers and on services.
    *
-   * @returns {string} something something
+   * @returns {string} A generated uuid string.
    */
   function uuid() {
     return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4());
