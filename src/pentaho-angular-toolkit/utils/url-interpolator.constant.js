@@ -7,6 +7,17 @@
   angular.module('pat.utils')
       .constant('UrlInterpolator', interpolateUrl);
 
+  /**
+   * @ngdoc function
+   * @name pat.utils.service:UrlInterpolator
+   * @description TODO: add description
+   *
+   * @param {string} url url
+   * @param {object} params params
+   * @param {object} data data
+   *
+   * @returns {object} something something
+   */
   function interpolateUrl(url, params, data) {
     params = copy(params || {});
     data = copy(data || {});

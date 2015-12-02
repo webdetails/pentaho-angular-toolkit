@@ -12,7 +12,7 @@
     CdeHelperProvider.setBasePath('/pentaho/plugin/pentaho-cdf-dd');
   }
 
-  /* @ngInject */
+
   CdeHelperProvider.$inject = ['UrlInterpolator'];
   function CdeHelperProvider(UrlInterpolator) {
 
@@ -28,6 +28,16 @@
       return _basePath;
     }
 
+    /**
+     * @ngdoc method
+     * @name pat.cde.service:CdeHelper#getDashboardPath
+     * @methodOf pat.cde.service:CdeHelper
+     * @description something something
+     *
+     * @param {string} path something something
+     *
+     * @returns {string} something something
+     */
     function getDashboardPath(path) {
       var url = ':basePath/api/:endpoint';
 
@@ -40,6 +50,10 @@
 
     this.$get = CdeHelper;
 
+    /**
+     * @ngdoc service
+     * @name pat.cde.service:CdeHelper
+     */
     CdeHelper.$inject = [ ];
     function CdeHelper() {
 

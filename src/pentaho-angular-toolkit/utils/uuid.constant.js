@@ -9,8 +9,11 @@
   }
 
   /**
-   * @ngdoc service
+   * @ngdoc function
    * @name pat.utils.service:uuid
+   * @description Some description
+   *
+   * @returns {string} something something
    */
   function uuid() {
     return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4());
