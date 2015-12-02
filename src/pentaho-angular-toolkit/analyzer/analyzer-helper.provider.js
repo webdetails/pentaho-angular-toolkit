@@ -37,7 +37,7 @@
         endpoint: 'editor'
       };
       params = extend(params, config);
-      return new UrlInterpolator(url, params).getUrl;
+      return UrlInterpolator(url, params).getUrl;
     }
 
     this.$get = AnalyzerHelper;
@@ -47,6 +47,7 @@
       var onLoadHandlers = {};
 
       var service = {
+        getLoadHandlers: getLoadHandlers,
         getAnalysisPath: getAnalysisPath,
         registerOnLoad: registerOnLoad,
         deregisterOnLoad: deregisterOnLoad
@@ -57,6 +58,10 @@
       return service;
 
       //////////////
+
+      function getLoadHandlers(){
+        return onLoadHandlers;
+      }
 
       function registerOnLoad(frameId, callback) {
         if (isString(frameId) && isFunction(callback)) {
