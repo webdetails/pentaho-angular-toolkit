@@ -66,7 +66,8 @@
         }, handleParametersChange, isDeepWatch());
 
         function handleParametersChange(newParameters) {
-          forEach(newParameters, function(value, name) {
+          forEach(newParameters, function(expression, name) {
+            var value = scope.$parent.$eval( expression );
             if (!equals(value, dash.getParameterValue(name))) {
               dash.fireChange(name, value);
             }
@@ -97,7 +98,8 @@
       }
 
       function setParameters(dash) {
-        forEach(controller.getParameters(), function(value, name) {
+        forEach(controller.getParameters(), function(expression, name) {
+          var value = scope.$parent.$eval( expression );
           dash.setParameter(name, value);
         });
         return dash;

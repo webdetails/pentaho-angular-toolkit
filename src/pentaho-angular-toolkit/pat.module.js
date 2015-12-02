@@ -12,6 +12,9 @@
   /**
    * @ngdoc overview
    * @name pat
+   * @description The pat module is the main module for pentaho-angular-toolkit.
+   * It is essentially an aggregation of the {@link pat.cdf}, {@link pat.cde}
+   * and {@link pat.analyzer} modules.
    */
   angular.module('pat', [
      'pat.cdf',

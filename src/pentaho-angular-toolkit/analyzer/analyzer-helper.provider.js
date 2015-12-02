@@ -30,6 +30,16 @@
       return _basePath;
     }
 
+    /**
+     * @ngdoc method
+     * @name pat.analyzer.service:AnalyzerHelper#getAnalysisPath
+     * @methodOf pat.analyzer.service:AnalyzerHelper
+     * @description something something
+     *
+     * @param {object} config something something
+     *
+     * @returns {string} something something
+     */
     function getAnalysisPath(config) {
       var url = ':basePath/:endpoint';
       var params = {
@@ -42,6 +52,10 @@
 
     this.$get = AnalyzerHelper;
 
+    /**
+     * @ngdoc service
+     * @name pat.analyzer.service:AnalyzerHelper
+     */
     AnalyzerHelper.$inject = ['$window'];
     function AnalyzerHelper($window) {
       var onLoadHandlers = {};
@@ -63,12 +77,31 @@
         return onLoadHandlers;
       }
 
+      /**
+       * @ngdoc method
+       * @name pat.analyzer.service:AnalyzerHelper#registerOnLoad
+       * @methodOf pat.analyzer.service:AnalyzerHelper
+       * @description something something
+       *
+       * @param {string} frameId something something
+       * @param {function} callback something something
+       *
+       */
       function registerOnLoad(frameId, callback) {
         if (isString(frameId) && isFunction(callback)) {
           onLoadHandlers[frameId] = callback;
         }
       }
 
+      /**
+       * @ngdoc method
+       * @name pat.analyzer.service:AnalyzerHelper#deregisterOnLoad
+       * @methodOf pat.analyzer.service:AnalyzerHelper
+       * @description something something
+       *
+       * @param {string} frameId something something
+       *
+       */
       function deregisterOnLoad(frameId) {
         delete onLoadHandlers[frameId];
       }
