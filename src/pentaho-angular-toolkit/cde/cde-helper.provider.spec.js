@@ -1,25 +1,43 @@
 describe('Provider: cdeHelperProvider', function () {
 
-  var cdeHelper;
+  var cdeHelper, cdeHelperProvider, urlInterpolator;
 
-  // excuted before each "it" is run.
   beforeEach(function (){
 
     module('pat.utils', function($provide){
-      $provide.constant('UrlInterpolator', {});
-    })
+      $provide.constant('UrlInterpolator', jasmine.createSpy('urlInterpolatorSpy').and.callFake(function(){
+        return {
+          getUrl: 'some/url'
+        }
+      }));
+    });
 
-    // load the module.
-    module('pat.cde');
+    module('pat.cde', function(_CdeHelperProvider_){
+      cdeHelperProvider = _CdeHelperProvider_;
+    });
 
-    // inject your provider for testing.
     inject(function(_CdeHelper_) {
       cdeHelper = _CdeHelper_;
     });
   });
 
-  it('...', function () {
+  it('should exist', function () {
+    expect(cdeHelperProvider.setBasePath).toBeDefined();
+  })
 
-    console.log(cdeHelper);
+  it('should return mocked value', function () {
+    var result = cdeHelper.getDashboardPath('some/path');
+    expect(result).toBe('some/url');
   });
+
+  it('tracks that spy was called with passed parameters', inject(function (UrlInterpolator) {
+    spyOn(cdeHelper, 'getDashboardPath').and.callThrough();
+    cdeHelper.getDashboardPath('some/path');
+
+    expect(UrlInterpolator).toHaveBeenCalledWith(':basePath/api/:endpoint', {
+      basePath: '/pentaho/plugin/pentaho-cdf-dd',
+      endpoint: 'renderer/getDashboard',
+      path: 'some/path'
+    });
+  }));
 });
