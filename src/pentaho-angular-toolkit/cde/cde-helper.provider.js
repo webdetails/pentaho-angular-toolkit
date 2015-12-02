@@ -12,7 +12,6 @@
     CdeHelperProvider.setBasePath('/pentaho/plugin/pentaho-cdf-dd');
   }
 
-
   CdeHelperProvider.$inject = ['UrlInterpolator'];
   function CdeHelperProvider(UrlInterpolator) {
 

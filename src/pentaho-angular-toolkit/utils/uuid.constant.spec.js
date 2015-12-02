@@ -1,24 +1,24 @@
-describe('Constant: uuid', function () {
+describe('Constant: uuid', function() {
 
   var uuid;
 
-  beforeEach(function () {
+  beforeEach(function() {
     // Load the constant's module
     module('pat.utils');
 
-    inject(function (_uuid_) {
+    inject(function(_uuid_) {
       uuid = _uuid_;
     });
   });
 
-  it('should exist', function () {
+  it('should exist', function() {
     expect(!!uuid).toBe(true);
   });
 
-  it('should generate unique uuid', function(){
+  it('should generate unique uuid', function() {
 
     var results = [];
-    for(var x = 0; x < 100; x++) {
+    for (var x = 0; x < 100; x++) {
       var result = uuid();
       var exists = results.indexOf(result);
       results.push(result);

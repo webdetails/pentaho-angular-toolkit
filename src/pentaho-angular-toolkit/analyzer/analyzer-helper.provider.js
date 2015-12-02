@@ -73,7 +73,7 @@
 
       //////////////
 
-      function getLoadHandlers(){
+      function getLoadHandlers() {
         return onLoadHandlers;
       }
 
