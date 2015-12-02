@@ -1,68 +1,59 @@
 describe('Controller: cdfDashboardController', function () {
 
-  var cdfDashboardController, cdfHelper, dash, $scope;
+  var cdfDashboardController, cdfHelperMock, dashMock, $scope;
 
-  // excuted before each "it" is run.
   beforeEach(function (){
 
-    // load the module.
     module('pat.cdf', function($provide){
       $provide.value('CdfHelper', {
-        renderDashboard: function() { return 'something' },
+        renderDashboard: function() { return 'someDashboard' },
         getNewDashboard: function() {
           return {
-            then: function(callback) { return callback(dash); }
+            then: function(callback) { return callback(dashMock); }
           };
         }
       });
-      $provide.value('dash', { });
+      $provide.value('dash', {});
     })
 
-    // inject your provider for testing.
     inject(function($controller, $rootScope, _CdfHelper_, _dash_) {
       $scope = $rootScope;
       cdfDashboardController = $controller('CdfDashboardController', { $scope: $scope });
-      cdfHelper = _CdfHelper_;
-      dash = _dash_;
+      cdfHelperMock = _CdfHelper_;
+      dashMock = _dash_;
     });
   });
 
-  it('...', function () {
-    var result = cdfDashboardController.setDashboard(dash);
-
-    expect(result).toBe(dash);
+  it('should return the same value that was passed', function () {
+    var result = cdfDashboardController.setDashboard(dashMock);
+    expect(result).toBe(dashMock);
   });
 
-  it('...', function () {
-
-    cdfDashboardController.setDashboard(dash);
-
+  it('should return the value that was set', function () {
+    cdfDashboardController.setDashboard(dashMock);
     var result = cdfDashboardController.getDashboard();
-
-    expect(result).toBe(dash);
+    expect(result).toBe(dashMock);
   });
 
-  it('...', function () {
-
-    spyOn(cdfHelper,'renderDashboard').and.callThrough();
-
-    cdfDashboardController.setDashboard(dash);
-
+  it('should return mocked value', function () {
     var result = cdfDashboardController.render();
-
-    expect(result).toBe('something');
-
-    expect(cdfHelper.renderDashboard).toHaveBeenCalledWith(dash);
+    expect(result).toBe('someDashboard');
   });
 
-  it('...', function () {
+  it('tracks that spy was called', function () {
+    spyOn(cdfHelperMock,'renderDashboard').and.callThrough();
+    cdfDashboardController.render();
+    expect(cdfHelperMock.renderDashboard).toHaveBeenCalled();
+  });
 
-    spyOn(cdfHelper,'getNewDashboard').and.callThrough();
+  it('tracks that spy was called with passed parameters', function () {
+    spyOn(cdfHelperMock,'getNewDashboard').and.callThrough();
+    cdfDashboardController.setNewDashboard('some/path', 'some/element');
+    expect(cdfHelperMock.getNewDashboard).toHaveBeenCalledWith('some/path', 'some/element');
+  });
 
+  it('should return mocked callback value after promise', function () {
     var result = cdfDashboardController.setNewDashboard('some/path', 'some/element');
-
-    expect(cdfHelper.getNewDashboard).toHaveBeenCalledWith('some/path', 'some/element');
-
-    expect(result).toBe(dash);
+    expect(result).toBe(dashMock);
   });
 });

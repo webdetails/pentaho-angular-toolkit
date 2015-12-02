@@ -1,11 +1,9 @@
 describe('Provider: cdfHelperProvider', function () {
 
-  var cdfHelper, dash, $rootScope, $window;
+  var cdfHelper, dashMock, $rootScope, $window;
 
-  // excuted before each "it" is run.
   beforeEach(function (){
 
-    // load the module.
     module('pat.cdf', function($provide){
       $provide.value('dash', {
         listenToOnce: function( dash , event , callback) { callback(); },
@@ -13,62 +11,49 @@ describe('Provider: cdfHelperProvider', function () {
       });
     })
 
-    // inject your provider for testing.
     inject(function(_CdfHelper_, _dash_, _$rootScope_ , _$window_ ) {
       cdfHelper = _CdfHelper_;
-      dash = _dash_;
+      dashMock = _dash_;
       $rootScope = _$rootScope_;
       $window = _$window_;
     });
   });
 
-  it('should test receive the fulfilled promise', function () {
+  it('tracks that spies were called with passed parameters', function () {
+    spyOn(dashMock, 'listenToOnce').and.callThrough();
+    spyOn(dashMock, 'render');
+    cdfHelper.renderDashboard(dashMock);
 
-    var result;
-
-    spyOn(dash, 'listenToOnce').and.callThrough();
-    spyOn(dash, 'render');
-
-    cdfHelper.renderDashboard(dash).then(function(returnFromPromise){
-      result = returnFromPromise;
-    });
-
-    expect(dash.listenToOnce).toHaveBeenCalledWith(dash, 'cdf:postInit', jasmine.any(Function));
-    expect(dash.render).toHaveBeenCalled();
-
-    $rootScope.$apply(); // promises are resolved/dispatched only on next $digest cycle
-
-    expect(result).toBe(dash);
-
+    expect(dashMock.listenToOnce).toHaveBeenCalledWith(dashMock, 'cdf:postInit', jasmine.any(Function));
+    expect(dashMock.render).toHaveBeenCalled();
   });
 
-  it('..', function () {
+  it('should test receive the fulfilled promise', function () {
+    cdfHelper.renderDashboard(dashMock).then(function(returnFromPromise){
+      expect(returnFromPromise).toBe(dashMock);
+    });
+    $rootScope.$apply();
+  });
 
-    var path = 'some/path';
-    var element = 'some/element';
+  it('tracks that spies were called with passed parameters', function () {
+
     var spies = {};
-
     spies.mockDash = function (element) {};
     spies.mockDash = spyOn(spies,'mockDash').and.callThrough();
-
     spies.mockRequire = function  (paths, callback) { callback(spies.mockDash); }
     spies.mockRequire = spyOn( spies, 'mockRequire').and.callThrough();
 
     $window.require = spies.mockRequire;
 
-    cdfHelper.getNewDashboard(path, element);
-
-    expect(spies.mockRequire).toHaveBeenCalledWith([path] , jasmine.any(Function) );
+    cdfHelper.getNewDashboard('some/path', 'some/element');
 
     $rootScope.$apply();
 
-    expect(spies.mockDash).toHaveBeenCalledWith(element);
-
+    expect(spies.mockRequire).toHaveBeenCalledWith(['some/path'] , jasmine.any(Function) );
+    expect(spies.mockDash).toHaveBeenCalledWith('some/element');
   });
 
-  it('..', function () {
-
-    var result;
+  it('should return an instance of mocked dash', function () {
 
     function mockDash(element) {};
     function mockRequire (paths, callback) { callback(mockDash); }
@@ -76,11 +61,9 @@ describe('Provider: cdfHelperProvider', function () {
     $window.require = mockRequire;
 
     cdfHelper.getNewDashboard( 'some/path' , 'some/element').then(function(returnFromPromise){
-      result = returnFromPromise;
+      expect(returnFromPromise instanceof mockDash).toBe(true);
     });
 
     $rootScope.$apply();
-
-    expect(result instanceof mockDash).toBe(true);
   });
 });

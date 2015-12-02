@@ -6,8 +6,6 @@ describe('Constant: uuid', function () {
     // Load the constant's module
     module('pat.utils');
 
-    // Inject in angular constructs otherwise,
-    //  you would need to inject these into each test
     inject(function (_uuid_) {
       uuid = _uuid_;
     });

@@ -31,7 +31,7 @@
     function getDashboardPath(path) {
       var url = ':basePath/api/:endpoint';
 
-      return new UrlInterpolator(url, {
+      return UrlInterpolator(url, {
         basePath: getBasePath(),
         endpoint: 'renderer/getDashboard',
         path: path
