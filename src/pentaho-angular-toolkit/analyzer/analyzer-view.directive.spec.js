@@ -43,7 +43,7 @@ describe('Directive: analyzerViewDirective', function () {
         expect(analyzerHelper.registerOnLoad).toHaveBeenCalledWith(frameId, callback);
     });
 
-    it('should pass parameters to directive on helper service callback call', function () {
+    it('should pass parameters to directive on helper service callback', function () {
         var callback = analyzerHelper.registerOnLoad.calls.mostRecent().args[1];
         callback('someApi', 'someFrameId');
         expect($scope.onLoad).toHaveBeenCalledWith('someApi', 'someFrameId');

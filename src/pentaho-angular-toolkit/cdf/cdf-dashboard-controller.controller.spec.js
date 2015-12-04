@@ -24,35 +24,35 @@ describe('Controller: cdfDashboardController', function() {
     });
   });
 
-  it('should return the same value that was passed', function() {
+  it('should return the registered cdf dashboard', function() {
     var result = cdfDashboardController.setDashboard(dashMock);
     expect(result).toBe(dashMock);
   });
 
-  it('should return the value that was set', function() {
+  it('should return the controlled dashboard thar was registered', function() {
     cdfDashboardController.setDashboard(dashMock);
     var result = cdfDashboardController.getDashboard();
     expect(result).toBe(dashMock);
   });
 
-  it('should return mocked value', function() {
+  it('should render the dashboard registered in the controller', function() {
     var result = cdfDashboardController.render();
     expect(result).toBe('someDashboard');
   });
 
-  it('tracks that spy was called', function() {
+  it('should ask helper service to render registered dashboard', function() {
     spyOn(cdfHelperMock,'renderDashboard').and.callThrough();
     cdfDashboardController.render();
     expect(cdfHelperMock.renderDashboard).toHaveBeenCalled();
   });
 
-  it('tracks that spy was called with passed parameters', function() {
+  it('should ask helper service to get a new dashboard with passed parameters', function() {
     spyOn(cdfHelperMock,'getNewDashboard').and.callThrough();
     cdfDashboardController.setNewDashboard('some/path', 'some/element');
     expect(cdfHelperMock.getNewDashboard).toHaveBeenCalledWith('some/path', 'some/element');
   });
 
-  it('should return mocked callback value after promise', function() {
+  it('should get new dashboard instance', function() {
     var result = cdfDashboardController.setNewDashboard('some/path', 'some/element');
     expect(result).toBe(dashMock);
   });

@@ -20,7 +20,8 @@ describe('Provider: analyzerHelperProvider', function() {
     handlerCallback = jasmine.createSpy('handlerCallbackSpy').and.callThrough();
   });
 
-  describe('base path getter and setter', function(){
+  describe('base path store', function(){
+
     it('should exist', function() {
       expect(analyzerHelperProvider.setBasePath).toBeDefined();
       expect(analyzerHelperProvider.getBasePath).toBeDefined();
@@ -35,7 +36,7 @@ describe('Provider: analyzerHelperProvider', function() {
   });
 
 
-  it('should populate object with passed values', function() {
+  it('should register frame id and load handler callback', function() {
     analyzerHelper.registerOnLoad('id1', handlerCallback);
     expect(analyzerHelper.getLoadHandlers()).toEqual(jasmine.objectContaining({
       'id1': handlerCallback
@@ -43,7 +44,7 @@ describe('Provider: analyzerHelperProvider', function() {
     expect(analyzerHelper.getLoadHandlers()['id1']).toEqual(handlerCallback);
   });
 
-  it('should remove values from object given key', function() {
+  it('should deregister frame id and load handler callback', function() {
     analyzerHelper.registerOnLoad('id2', handlerCallback);
     analyzerHelper.deregisterOnLoad('id2');
     expect(analyzerHelper.getLoadHandlers()).not.toEqual(jasmine.objectContaining({
@@ -51,7 +52,7 @@ describe('Provider: analyzerHelperProvider', function() {
     }));
   });
 
-  it('tracks that spy was called with passed parameters', function() {
+  it('should call load handler callback when the view of the specified frameId loads', function() {
     analyzerHelper.registerOnLoad('id3', handlerCallback);
     $window.onAnalyzerLoad('someAPI', 'id3');
     expect(handlerCallback).toHaveBeenCalledWith('someAPI', 'id3');

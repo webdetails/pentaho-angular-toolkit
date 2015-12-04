@@ -19,7 +19,7 @@ describe('Provider: cdfHelperProvider', function() {
     });
   });
 
-  it('tracks that spies were called with passed parameters', function() {
+  it('should ask service to render a dashboard', function() {
     spyOn(dashMock, 'listenToOnce').and.callThrough();
     spyOn(dashMock, 'render');
     cdfHelper.renderDashboard(dashMock);
@@ -28,14 +28,14 @@ describe('Provider: cdfHelperProvider', function() {
     expect(dashMock.render).toHaveBeenCalled();
   });
 
-  it('should test receive the fulfilled promise', function() {
+  it('should receive a dashboard after render promise fulfilled', function() {
     cdfHelper.renderDashboard(dashMock).then(function(returnFromPromise) {
       expect(returnFromPromise).toBe(dashMock);
     });
     $rootScope.$apply();
   });
 
-  it('tracks that spies were called with passed parameters', function() {
+  it('should pass dashboard path to be loaded by RequireJS and element where the dashboard should be mounted', function() {
 
     var spies = {};
     spies.mockDash = function(element) {};
@@ -53,7 +53,7 @@ describe('Provider: cdfHelperProvider', function() {
     expect(spies.mockDash).toHaveBeenCalledWith('some/element');
   });
 
-  it('should return an instance of mocked dash', function() {
+  it('should return a new dashboard instance after loaded from given path', function() {
 
     function mockDash(element) {};
     function mockRequire(paths, callback) { callback(mockDash); }
