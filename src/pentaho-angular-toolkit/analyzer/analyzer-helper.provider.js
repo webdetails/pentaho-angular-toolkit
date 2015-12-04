@@ -36,11 +36,13 @@
      * @ngdoc method
      * @name pat.analyzer.service:AnalyzerHelper#getAnalysisPath
      * @methodOf pat.analyzer.service:AnalyzerHelper
-     * @description something something
+     * @description This method takes a configuration object for analyzer and returns the
+     * url that should be called to create an analyzer view with that configuration.
      *
-     * @param {object} config something something
+     * @param {object} config A configuration object with parameters controlling some initialization
+     * aspects of an analyzer frame.
      *
-     * @returns {string} something something
+     * @returns {string} The url corresponding to the configuration specified on the configuration object.
      */
     function getAnalysisPath(config) {
       var url = getBasePath() + '/editor';
@@ -78,6 +80,14 @@
 
       //////////////
 
+      /**
+       * @ngdoc method
+       * @name pat.analyzer.service:AnalyzerHelper#getLoadHandlers
+       * @methodOf pat.analyzer.service:AnalyzerHelper
+       * @description Retrieves the container of all the registered callbacks..
+       *
+       * @returns {object} The map of registered callbacks.
+       */
       function getLoadHandlers() {
         return onLoadHandlers;
       }
@@ -103,9 +113,9 @@
        * @ngdoc method
        * @name pat.analyzer.service:AnalyzerHelper#deregisterOnLoad
        * @methodOf pat.analyzer.service:AnalyzerHelper
-       * @description something something
+       * @description Removes the registered callback for the specified frameId.
        *
-       * @param {string} frameId something something
+       * @param {string} frameId A string indentifying the frameId for which to remove the callback.
        *
        */
       function deregisterOnLoad(frameId) {

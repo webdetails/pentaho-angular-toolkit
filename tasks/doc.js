@@ -17,7 +17,8 @@ module.exports = function() {
     scripts: [
       'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js',
       'http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js'
-    ]
+    ],
+    title:'Pentaho Angular Toolkit'
   };
 
   return gulp
