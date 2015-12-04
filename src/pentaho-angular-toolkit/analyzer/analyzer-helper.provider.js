@@ -86,10 +86,11 @@
        * @ngdoc method
        * @name pat.analyzer.service:AnalyzerHelper#registerOnLoad
        * @methodOf pat.analyzer.service:AnalyzerHelper
-       * @description something something
+       * @description Registers a callback function to be called when the analyzer view with the
+       * specified frameId triggers the onLoad event.
        *
-       * @param {string} frameId something something
-       * @param {function} callback something something
+       * @param {string} frameId A string identifying the frameId of an analyzer view.
+       * @param {function} callback The callback to run when the view the the specified frameId loads.
        *
        */
       function registerOnLoad(frameId, callback) {

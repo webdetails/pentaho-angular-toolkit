@@ -11,9 +11,13 @@
    * @name pat.analyzer.directive:patAnalyzerView
    * @scope
    * @restrict EA
+   * @description This directive handles the implementation details of embedding
+   * an analyzer view in an application. Standard iframes are used as the supporting
+   * technology, so there aren't any particular issues to taken into account when
+   * using the directive.
    *
-   * @param {object} config Analyzer view configuration object.
-   * @param {function=} on-load Function to call when the analyzer view loads.
+   * @param {object} config An analyzer view configuration object.
+   * @param {function=} on-load A function to call when the analyzer view loads.
    */
   analyzerView.$inject = ['AnalyzerHelper', 'uuid'];
   function analyzerView(AnalyzerHelper, uuid) {
