@@ -1,68 +1,51 @@
-(function(angular) {
-  'use strict';
+describe('Directive: analyzerViewDirective', function () {
 
-  angular.module('pat.analyzer')
-      .directive('patAnalyzerView', analyzerView);
+    var $scope, $compile, element, analyzerHelper;
 
-  // TODO: Add attribute version for single parameter / single event.
+    beforeEach(function () {
 
-  /**
-   * @ngdoc directive
-   * @name pat.analyzer.directive:patAnalyzerView
-   * @scope
-   * @restrict EA
-   *
-   * @param {object} config Analyzer view configuration object.
-   * @param {function=} on-load Function to call when the analyzer view loads.
-   */
-  analyzerView.$inject = ['AnalyzerHelper', 'uuid'];
-  function analyzerView(AnalyzerHelper, uuid) {
-    var directive = {
-      bindToController: true,
-      controller: AnalyzerViewController,
-      controllerAs: 'vm',
-      restrict: 'EA',
-      template:
-          '<iframe ng-src="{{vm.path}}" frameborder="0" id="{{vm.frameId}}" allowfullscreen/>',
-      scope: {
-        getConfig: '&config',
-        onLoad: '&onLoad'
-      },
-      link: postLink
-    };
+        module('pat.analyzer', function ($provide) {
 
-    /* @ngInject */
+            $provide.value('AnalyzerHelper', {
+                registerOnLoad: jasmine.createSpy('registerSpy').and.callThrough(),
+                getAnalysisPath: jasmine.createSpy('loadSpy').and.callThrough()
+            })
+        })
 
-    function postLink(scope, element, attrs, controller) {
-      controller.frameId = '__ANALYZER__FRAME__' + uuid() + '__';
+        inject(function ($rootScope, _$compile_, _AnalyzerHelper_) {
 
-      scope.$watchCollection(function() {
-        return controller.getConfig();
-      }, handleConfigChange);
+            $scope = $rootScope.$new();
+            $compile = _$compile_;
 
-      if (controller.onLoad) {
-        AnalyzerHelper.registerOnLoad(controller.frameId, onLoad);
-      }
+            analyzerHelper = _AnalyzerHelper_;
 
-      function handleConfigChange(newConfig) {
-        controller.path = AnalyzerHelper.getAnalysisPath(newConfig);
-      }
+            element = $compile('<pat-analyzer-view config="config" on-load="onLoad(api, frameId)"/>')($scope);
 
-      function onLoad(api, frameId) {
-        controller.onLoad({api: api, frameId: frameId});
-      }
+            $scope.config = "someConfig";
+            $scope.onLoad = jasmine.createSpy('onLoad');
 
-    }
+            $scope.$digest();
+        })
+    });
 
-    postLink.$inject = ['scope', 'element', 'attrs', 'controller'];
+    it('should have a scope on root element', function() {
+        expect(element.isolateScope()).toBeDefined();
+        expect(element.isolateScope().$id).not.toEqual($scope.$id);
+    });
 
-    return directive;
-  }
+    it('should ask helper service to get a path', function () {
+        expect(analyzerHelper.getAnalysisPath).toHaveBeenCalledWith('someConfig');
+    });
 
-  // TODO: Move some of the API to the controller, for sharing with other directives
-  AnalyzerViewController.$inject = [];
-  function AnalyzerViewController() {
+    it('should ask helper service to register frame id and load handler callback', function () {
+        var frameId = analyzerHelper.registerOnLoad.calls.mostRecent().args[0];
+        var callback = analyzerHelper.registerOnLoad.calls.mostRecent().args[1];
+        expect(analyzerHelper.registerOnLoad).toHaveBeenCalledWith(frameId, callback);
+    });
 
-  }
-
-})(window.angular);
+    it('should pass parameters to directive on helper service callback call', function () {
+        var callback = analyzerHelper.registerOnLoad.calls.mostRecent().args[1];
+        callback('someApi', 'someFrameId');
+        expect($scope.onLoad).toHaveBeenCalledWith('someApi', 'someFrameId');
+    });
+});
