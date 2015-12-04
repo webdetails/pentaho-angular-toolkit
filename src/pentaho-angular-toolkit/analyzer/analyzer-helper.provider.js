@@ -57,6 +57,9 @@
     /**
      * @ngdoc service
      * @name pat.analyzer.service:AnalyzerHelper
+     * @description The AnalyzerHelper service acts as an abstraction layer so
+     * that controllers and directives don't have to directly interface with
+     * {@link https://help.pentaho.com/Documentation/6.0/0L0/120/030 Pentaho Analyzer}.
      */
     AnalyzerHelper.$inject = ['$window'];
     function AnalyzerHelper($window) {
