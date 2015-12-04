@@ -6,13 +6,7 @@ describe('Provider: analyzerHelperProvider', function() {
 
   beforeEach(function() {
 
-    module('pat.utils', function($provide) {
-      $provide.constant('UrlInterpolator', jasmine.createSpy('urlInterpolatorSpy').and.callFake(function() {
-        return {
-          getUrl: 'some/url'
-        };
-      }));
-    });
+    module('pat.utils');
 
     module('pat.analyzer', function(_AnalyzerHelperProvider_) {
       analyzerHelperProvider = _AnalyzerHelperProvider_;
@@ -26,18 +20,20 @@ describe('Provider: analyzerHelperProvider', function() {
     handlerCallback = jasmine.createSpy('handlerCallbackSpy').and.callThrough();
   });
 
-  it('should exist', function() {
-    expect(analyzerHelperProvider.setBasePath).toBeDefined();
+  describe('base path getter and setter', function(){
+    it('should exist', function() {
+      expect(analyzerHelperProvider.setBasePath).toBeDefined();
+      expect(analyzerHelperProvider.getBasePath).toBeDefined();
+    });
+
+    it('should store the base path value internally in the provider', function(){
+      analyzerHelperProvider.setBasePath('some/path');
+      expect(analyzerHelperProvider.getBasePath()).toBe('some/path');
+      analyzerHelperProvider.setBasePath('another/path');
+      expect(analyzerHelperProvider.getBasePath()).not.toBe('some/path');
+    });
   });
 
-  it('should return mocked value and tracks that spy was called with passed parameters', inject(function(UrlInterpolator) {
-    expect(analyzerHelper.getAnalysisPath({})).toBe('some/url');
-
-    expect(UrlInterpolator).toHaveBeenCalledWith(':basePath/:endpoint', {
-      basePath: '/pentaho/api/repos/xanalyzer',
-      endpoint: 'editor'
-    });
-  }));
 
   it('should populate object with passed values', function() {
     analyzerHelper.registerOnLoad('id1', handlerCallback);
