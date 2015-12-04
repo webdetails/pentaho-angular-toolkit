@@ -4,6 +4,7 @@
   var extend = angular.extend;
   var isString = angular.isString;
   var isFunction = angular.isFunction;
+  var forEach = angular.forEach;
 
   angular.module('pat.analyzer')
       .provider('AnalyzerHelper', AnalyzerHelperProvider)
@@ -15,12 +16,13 @@
   }
 
   /* @ngInject */
-  AnalyzerHelperProvider.$inject = ['UrlInterpolator'];
-  function AnalyzerHelperProvider(UrlInterpolator) {
+  AnalyzerHelperProvider.$inject = [];
+  function AnalyzerHelperProvider() {
 
     var _basePath = '';
 
     this.setBasePath = setBasePath;
+    this.getBasePath = getBasePath;
 
     function setBasePath(path) {
       _basePath = path;
@@ -41,13 +43,13 @@
      * @returns {string} something something
      */
     function getAnalysisPath(config) {
-      var url = ':basePath/:endpoint';
-      var params = {
-        basePath: getBasePath(),
-        endpoint: 'editor'
-      };
-      params = extend(params, config);
-      return UrlInterpolator(url, params).getUrl;
+      var url = getBasePath() + '/editor';
+      var isFirst = true;
+      forEach(config, function(key, value){
+        url += (isFirst ? '?' : '&') + key + '=' + value;
+        isFirst = false;
+      });
+      return url;
     }
 
     this.$get = AnalyzerHelper;
@@ -55,6 +57,9 @@
     /**
      * @ngdoc service
      * @name pat.analyzer.service:AnalyzerHelper
+     * @description The AnalyzerHelper service acts as an abstraction layer so
+     * that controllers and directives don't have to directly interface with
+     * {@link https://help.pentaho.com/Documentation/6.0/0L0/120/030 Pentaho Analyzer}.
      */
     AnalyzerHelper.$inject = ['$window'];
     function AnalyzerHelper($window) {
@@ -73,7 +78,7 @@
 
       //////////////
 
-      function getLoadHandlers(){
+      function getLoadHandlers() {
         return onLoadHandlers;
       }
 
@@ -81,10 +86,11 @@
        * @ngdoc method
        * @name pat.analyzer.service:AnalyzerHelper#registerOnLoad
        * @methodOf pat.analyzer.service:AnalyzerHelper
-       * @description something something
+       * @description Registers a callback function to be called when the analyzer view with the
+       * specified frameId triggers the onLoad event.
        *
-       * @param {string} frameId something something
-       * @param {function} callback something something
+       * @param {string} frameId A string identifying the frameId of an analyzer view.
+       * @param {function} callback The callback to run when the view the the specified frameId loads.
        *
        */
       function registerOnLoad(frameId, callback) {

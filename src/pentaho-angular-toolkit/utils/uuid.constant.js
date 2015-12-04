@@ -1,7 +1,6 @@
 (function(angular) {
   'use strict';
 
-
   angular.module('pat.utils').constant('uuid', uuid);
 
   function S4() {
