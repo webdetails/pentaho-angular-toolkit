@@ -2,13 +2,14 @@
   'use strict';
 
   angular.module('pat.cdf')
-      .controller('CdfDashboardController', CdfDashboardController );
-
+      .controller('CdfDashboardController', CdfDashboardController);
 
   /**
    * @ngdoc controller
    * @name pat.cdf.controller:CdfDashboardController
-   * @description something something
+   * @description This controller is mainly meant to be used by directives that want
+   * to load a cdf dashboard and interface with it. It makes use of {@link pat.cdf.service:CdfHelper CdfHelper}
+   * but it also keeps a register of the controlled dashboard.
    *
    */
   CdfDashboardController.$inject = ['CdfHelper'];
@@ -24,11 +25,11 @@
      * @ngdoc method
      * @name pat.cdf.controller:CdfDashboardController#setDashboard
      * @methodOf pat.cdf.controller:CdfDashboardController
-     * @description something something
+     * @description Sets the controlled cdf dashboard in the controller registry.
      *
-     * @param {dashboard} dash something something
+     * @param {dashboard} dash A cdf dashboard.
      *
-     * @returns {dashboard} something something
+     * @returns {dashboard} The registered cdf dashboard (for chaining inside promise handlers).
      */
     function setDashboard(dash) {
       _dash = dash;
@@ -39,9 +40,9 @@
      * @ngdoc method
      * @name pat.cdf.controller:CdfDashboardController#getDashboard
      * @methodOf pat.cdf.controller:CdfDashboardController
-     * @description something something
+     * @description Gets the controlled dashboard from the controller registry.
      *
-     * @returns {dashboard} something something
+     * @returns {dashboard} The registered cdf dashboard.
      */
     function getDashboard() {
       return _dash;
@@ -51,9 +52,10 @@
      * @ngdoc method
      * @name pat.cdf.controller:CdfDashboardController#render
      * @methodOf pat.cdf.controller:CdfDashboardController
-     * @description something something
+     * @description Renders the dashboard registered in the controller. Makes use of
+     * {@link pat.cdf.service:CdfHelper#renderDashboard CdfHelper#renderDashboard}.
      *
-     * @returns {promise} something something
+     * @returns {promise} A promise that will be resolved when the dashboard finishes rendering.
      *
      */
     function render() {
@@ -64,12 +66,14 @@
      * @ngdoc method
      * @name pat.cdf.controller:CdfDashboardController#setNewDashboard
      * @methodOf pat.cdf.controller:CdfDashboardController
-     * @description something something
+     * @description Gets a new dashboard instance and sets in in the controller registry.
      *
-     * @param {string} path something something
-     * @param {element} element something something
+     * @param {string} path A path with the dashboard definition module.
+     * @param {element} element A DOM or jquery element where the dashboard should me mounted.
      *
-     * @returns {promise} something something
+     * @returns {promise} A promise that will be resolved when the dashboard definition is
+     * fetched and a new dashboard is instantianted. The dashboard instance is passed to the
+     * promise success handler.
      *
      */
     function setNewDashboard(path, element) {

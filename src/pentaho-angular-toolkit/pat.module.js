@@ -5,7 +5,6 @@
  * @typedef element
  */
 
-
 (function(angular) {
   'use strict';
 

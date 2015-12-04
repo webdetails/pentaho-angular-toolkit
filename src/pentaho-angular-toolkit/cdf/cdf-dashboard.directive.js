@@ -16,11 +16,11 @@
    * @scope
    * @restrict EA
    *
-   * @param {string} path Url from where the dashboard definition should be fetched.
-   * @param {object=} parameters Map or expressions to bind to dashboard parameters.
-   * @param {object=} events Map or expressions to run when a dashboard event is fired.
+   * @param {string} path A url from where the dashboard definition should be fetched.
+   * @param {object=} parameters A map or expressions to bind to dashboard parameters.
+   * @param {object=} events A map of expressions to run when a dashboard event is fired.
    * These are usually callback functions.
-   * @param {boolean=} deep-watch Expression that, when evaluated, controls whether the
+   * @param {boolean=} deep-watch An expression that, when evaluated, controls whether the
    * parameter expressions should watch deeply or shallowly.
    */
   cdfDashboard.$inject = ['$parse'];
@@ -67,7 +67,7 @@
 
         function handleParametersChange(newParameters) {
           forEach(newParameters, function(expression, name) {
-            var value = scope.$parent.$eval( expression );
+            var value = scope.$parent.$eval(expression);
             if (!equals(value, dash.getParameterValue(name))) {
               dash.fireChange(name, value);
             }
@@ -99,7 +99,7 @@
 
       function setParameters(dash) {
         forEach(controller.getParameters(), function(expression, name) {
-          var value = scope.$parent.$eval( expression );
+          var value = scope.$parent.$eval(expression);
           dash.setParameter(name, value);
         });
         return dash;

@@ -1,18 +1,12 @@
-describe('Provider: cdeHelperProvider', function () {
+describe('Provider: cdeHelperProvider', function() {
 
-  var cdeHelper, cdeHelperProvider, urlInterpolator;
+  var cdeHelper, cdeHelperProvider;
 
-  beforeEach(function (){
+  beforeEach(function() {
 
-    module('pat.utils', function($provide){
-      $provide.constant('UrlInterpolator', jasmine.createSpy('urlInterpolatorSpy').and.callFake(function(){
-        return {
-          getUrl: 'some/url'
-        }
-      }));
-    });
+    module('pat.utils');
 
-    module('pat.cde', function(_CdeHelperProvider_){
+    module('pat.cde', function(_CdeHelperProvider_) {
       cdeHelperProvider = _CdeHelperProvider_;
     });
 
@@ -21,23 +15,31 @@ describe('Provider: cdeHelperProvider', function () {
     });
   });
 
-  it('should exist', function () {
-    expect(cdeHelperProvider.setBasePath).toBeDefined();
-  })
+  describe('base path getter and setter', function(){
+    it('should exist', function() {
+      expect(cdeHelperProvider.setBasePath).toBeDefined();
+      expect(cdeHelperProvider.getBasePath).toBeDefined();
+    });
 
-  it('should return mocked value', function () {
-    var result = cdeHelper.getDashboardPath('some/path');
-    expect(result).toBe('some/url');
+    it('should store the base path value internally in the provider', function(){
+      cdeHelperProvider.setBasePath('some/path');
+      expect(cdeHelperProvider.getBasePath()).toBe('some/path');
+      cdeHelperProvider.setBasePath('another/path');
+      expect(cdeHelperProvider.getBasePath()).not.toBe('some/path');
+    });
   });
 
-  it('tracks that spy was called with passed parameters', inject(function (UrlInterpolator) {
-    spyOn(cdeHelper, 'getDashboardPath').and.callThrough();
-    cdeHelper.getDashboardPath('some/path');
+  describe('dashboard path service method', function(){
 
-    expect(UrlInterpolator).toHaveBeenCalledWith(':basePath/api/:endpoint', {
-      basePath: '/pentaho/plugin/pentaho-cdf-dd',
-      endpoint: 'renderer/getDashboard',
-      path: 'some/path'
+    it('should return the dashboard url based on the dashboard repo path.', function(){
+      var dashboardPath = 'path/to/dashboard.wcdf';
+      var fullPath = cdeHelperProvider.getBasePath() + '/api/renderer/getDashboard?path=' + dashboardPath;
+
+      expect( cdeHelper.getDashboardPath(dashboardPath)).toBe(fullPath);
+
+
     });
-  }));
+
+  });
+
 });
