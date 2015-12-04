@@ -32,11 +32,12 @@
      * @ngdoc method
      * @name pat.cde.service:CdeHelper#getDashboardPath
      * @methodOf pat.cde.service:CdeHelper
-     * @description something something
+     * @description The getDashboardPath method transforms a dashboard path in the repo
+     * to a url that can be used to get the corresponding dashboard definition.
      *
-     * @param {string} path something something
+     * @param {string} path A dashboard path inside the repository.
      *
-     * @returns {string} something something
+     * @returns {string} A url that can be used to get the specified dashboard definition.
      */
     function getDashboardPath(path) {
       var url = getBasePath() + '/api/renderer/getDashboard?path=' + path;

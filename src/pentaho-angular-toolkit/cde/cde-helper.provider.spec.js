@@ -32,7 +32,7 @@ describe('Provider: cdeHelperProvider', function() {
   describe('dashboard path service method', function(){
 
     it('should return the dashboard url based on the dashboard repo path.', function(){
-      var dashboardPath = 'path:to:dashboard.wcdf';
+      var dashboardPath = 'path/to/dashboard.wcdf';
       var fullPath = cdeHelperProvider.getBasePath() + '/api/renderer/getDashboard?path=' + dashboardPath;
 
       expect( cdeHelper.getDashboardPath(dashboardPath)).toBe(fullPath);
