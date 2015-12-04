@@ -4,6 +4,7 @@
   var extend = angular.extend;
   var isString = angular.isString;
   var isFunction = angular.isFunction;
+  var forEach = angular.forEach;
 
   angular.module('pat.analyzer')
       .provider('AnalyzerHelper', AnalyzerHelperProvider)
@@ -15,12 +16,13 @@
   }
 
   /* @ngInject */
-  AnalyzerHelperProvider.$inject = ['UrlInterpolator'];
-  function AnalyzerHelperProvider(UrlInterpolator) {
+  AnalyzerHelperProvider.$inject = [];
+  function AnalyzerHelperProvider() {
 
     var _basePath = '';
 
     this.setBasePath = setBasePath;
+    this.getBasePath = getBasePath;
 
     function setBasePath(path) {
       _basePath = path;
@@ -41,13 +43,13 @@
      * @returns {string} something something
      */
     function getAnalysisPath(config) {
-      var url = ':basePath/:endpoint';
-      var params = {
-        basePath: getBasePath(),
-        endpoint: 'editor'
-      };
-      params = extend(params, config);
-      return UrlInterpolator(url, params).getUrl;
+      var url = getBasePath() + '/editor';
+      var isFirst = true;
+      forEach(config, function(key, value){
+        url += (isFirst ? '?' : '&') + key + '=' + value;
+        isFirst = false;
+      });
+      return url;
     }
 
     this.$get = AnalyzerHelper;

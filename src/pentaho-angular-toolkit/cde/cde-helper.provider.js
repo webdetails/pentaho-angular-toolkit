@@ -12,12 +12,13 @@
     CdeHelperProvider.setBasePath('/pentaho/plugin/pentaho-cdf-dd');
   }
 
-  CdeHelperProvider.$inject = ['UrlInterpolator'];
-  function CdeHelperProvider(UrlInterpolator) {
+  CdeHelperProvider.$inject = [];
+  function CdeHelperProvider() {
 
     var _basePath = '';
 
     this.setBasePath = setBasePath;
+    this.getBasePath = getBasePath;
 
     function setBasePath(path) {
       _basePath = path;
@@ -38,13 +39,9 @@
      * @returns {string} something something
      */
     function getDashboardPath(path) {
-      var url = ':basePath/api/:endpoint';
+      var url = getBasePath() + '/api/renderer/getDashboard?path=' + path;
 
-      return UrlInterpolator(url, {
-        basePath: getBasePath(),
-        endpoint: 'renderer/getDashboard',
-        path: path
-      }).getUrl;
+      return url;
     }
 
     this.$get = CdeHelper;
@@ -52,6 +49,9 @@
     /**
      * @ngdoc service
      * @name pat.cde.service:CdeHelper
+     * @description The CdeHelper service acts as an abstraction layer so
+     * that controllers and directives don't have to directly interface with
+     * {@link http://www.webdetails.pt/ctools/cde/ CDE} using $http.
      */
     CdeHelper.$inject = [ ];
     function CdeHelper() {
