@@ -15,7 +15,10 @@ module.exports = function () {
     $.log('Optimizing angular files');
 
     return gulp
-        .src([$.dev_path + $.module.name + '/**/*.js'])
+        .src([
+            $.dev_path + $.module.name + '/**/*.js',
+            '!' + $.dev_path + $.module.name + '/**/*.spec.js'
+        ])
         .pipe(angularFilesort())
         .pipe(concat($.module.name + '.js'))
         .pipe(gulp.dest($.dist_path));
