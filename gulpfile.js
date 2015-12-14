@@ -23,7 +23,7 @@ gulp.task('default', function(cb){
  * @param  {Function} done - callback when complete
  */
 gulp.task('build', function(cb) {
-	runSequence('clean', 'test', 'angular', cb);
+	runSequence('clean', 'test', 'angular', 'doc', cb);
 });
 
 /**
