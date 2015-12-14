@@ -3,6 +3,15 @@
 
     "globals": {
         "angular": false,
-        "window": false
+        "window": false,
+        "jasmine": false,
+        "module": false,
+        "inject": false,
+        "describe": false,
+        "it": false,
+        "beforeEach": false,
+        "afterEach": false,
+        "expect": false,
+        "spyOn": false
     }
 }
