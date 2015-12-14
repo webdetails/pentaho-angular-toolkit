@@ -35,6 +35,6 @@ deploy:
 
 after_deploy:
 - bash _scripts/deploy-module.sh
-- bash _scripts/deploy-npm.sh
+#- bash _scripts/deploy-npm.sh
 
 
