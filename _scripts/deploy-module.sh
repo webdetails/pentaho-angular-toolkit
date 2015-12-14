@@ -7,7 +7,6 @@ git init
 git remote add origin "https://github.com/$GH_USER/$GH_REPO"
 
 git checkout --orphan module
-git rm -rf .
 
 # inside this git repo we'll pretend to be a new user
 git config user.name "pentaho"
