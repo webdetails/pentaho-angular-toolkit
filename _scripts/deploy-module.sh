@@ -21,5 +21,5 @@ git commit -m "Pentaho Angular Toolkit Module $TRAVIS_BRANCH"
 # force push from the current repo's master
 # (all previous history will be lost, since we are overwriting it.)
 # we redirect any output to /dev/null to hide any sensitive credential data that might otherwise be exposed.
-git push --force --quiet "https://$GH_TOKEN@github.com/$GH_USER/$GH_REPO.git" origin master:module > /dev/null 2>&1
+git push --force --quiet "https://$GH_TOKEN@github.com/$GH_USER/$GH_REPO.git" module master:module > /dev/null 2>&1
 #git push --tags "https://$GH_TOKEN@github.com/$GH_USER/$GH_REPO.git"
