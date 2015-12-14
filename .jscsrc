@@ -1,3 +1,22 @@
 {
-  "preset": "pentaho"
+  "preset": "pentaho",
+
+  "jsDoc": {
+    "checkAnnotations": {
+      "preset": "jsdoc3",
+      "extra": {
+        "ngdoc": true,
+        "scope": true,
+        "priority": true,
+        "animations": true,
+        "restrict": true,
+        "methodOf": true,
+        "propertyOf": true,
+        "eventOf": true,
+        "eventType": true
+      }
+    }
+  },
+
+  "maximumLineLength": 150
 }
