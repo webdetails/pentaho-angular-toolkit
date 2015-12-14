@@ -1,6 +1,8 @@
 describe('Provider: cdeHelperProvider', function() {
+  'use strict';
 
-  var cdeHelper, cdeHelperProvider;
+  var cdeHelper;
+  var cdeHelperProvider;
 
   beforeEach(function() {
 
@@ -15,13 +17,13 @@ describe('Provider: cdeHelperProvider', function() {
     });
   });
 
-  describe('base path getter and setter', function(){
+  describe('base path getter and setter', function() {
     it('should exist', function() {
       expect(cdeHelperProvider.setBasePath).toBeDefined();
       expect(cdeHelperProvider.getBasePath).toBeDefined();
     });
 
-    it('should store the base path value internally in the provider', function(){
+    it('should store the base path value internally in the provider', function() {
       cdeHelperProvider.setBasePath('some/path');
       expect(cdeHelperProvider.getBasePath()).toBe('some/path');
       cdeHelperProvider.setBasePath('another/path');
@@ -29,17 +31,13 @@ describe('Provider: cdeHelperProvider', function() {
     });
   });
 
-  describe('dashboard path service method', function(){
+  describe('dashboard path service method', function() {
 
-    it('should return the dashboard url based on the dashboard repo path.', function(){
+    it('should return the dashboard url based on the dashboard repo path.', function() {
       var dashboardPath = 'path/to/dashboard.wcdf';
       var fullPath = cdeHelperProvider.getBasePath() + '/api/renderer/getDashboard?path=' + dashboardPath;
 
-      expect( cdeHelper.getDashboardPath(dashboardPath)).toBe(fullPath);
-
-
+      expect(cdeHelper.getDashboardPath(dashboardPath)).toBe(fullPath);
     });
-
   });
-
 });

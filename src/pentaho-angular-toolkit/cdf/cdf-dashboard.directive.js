@@ -6,7 +6,7 @@
   var equals = angular.equals;
 
   angular.module('pat.cdf')
-      .directive('patCdfDashboard', cdfDashboard);
+    .directive('patCdfDashboard', cdfDashboard);
 
   // TODO: Add attribute version for single parameter / single event.
 
@@ -52,10 +52,10 @@
         if (newPath) {
           clearWatcher();
           controller.setNewDashboard(newPath, element)
-              .then(setParameters)
-              .then(addEventsDispatcher)
-              .then(controller.render)
-              .then(addParametersWatcher)
+            .then(setParameters)
+            .then(addEventsDispatcher)
+            .then(controller.render)
+            .then(addParametersWatcher)
           ;
         }
       }

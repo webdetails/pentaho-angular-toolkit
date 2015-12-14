@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('pat.cdf')
-      .controller('CdfDashboardController', CdfDashboardController);
+    .controller('CdfDashboardController', CdfDashboardController);
 
   /**
    * @ngdoc controller

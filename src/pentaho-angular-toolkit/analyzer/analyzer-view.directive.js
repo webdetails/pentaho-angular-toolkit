@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('pat.analyzer')
-      .directive('patAnalyzerView', analyzerView);
+    .directive('patAnalyzerView', analyzerView);
 
   // TODO: Add attribute version for single parameter / single event.
 
@@ -26,8 +26,7 @@
       controller: AnalyzerViewController,
       controllerAs: 'vm',
       restrict: 'EA',
-      template:
-          '<iframe ng-src="{{vm.path}}" frameborder="0" id="{{vm.frameId}}" allowfullscreen/>',
+      template: '<iframe ng-src="{{vm.path}}" frameborder="0" id="{{vm.frameId}}" allowfullscreen/>',
       scope: {
         getConfig: '&config',
         onLoad: '&onLoad'

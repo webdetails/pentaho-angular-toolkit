@@ -1,15 +1,23 @@
 describe('Controller: cdfDashboardController', function() {
+  'use strict';
 
-  var cdfDashboardController, cdfHelperMock, dashMock, $scope;
+  var cdfDashboardController;
+  var cdfHelperMock;
+  var dashMock;
+  var $scope;
 
   beforeEach(function() {
 
     module('pat.cdf', function($provide) {
       $provide.value('CdfHelper', {
-        renderDashboard: function() { return 'someDashboard'; },
+        renderDashboard: function() {
+          return 'someDashboard';
+        },
         getNewDashboard: function() {
           return {
-            then: function(callback) { return callback(dashMock); }
+            then: function(callback) {
+              return callback(dashMock);
+            }
           };
         }
       });
@@ -41,13 +49,13 @@ describe('Controller: cdfDashboardController', function() {
   });
 
   it('should ask helper service to render registered dashboard', function() {
-    spyOn(cdfHelperMock,'renderDashboard').and.callThrough();
+    spyOn(cdfHelperMock, 'renderDashboard').and.callThrough();
     cdfDashboardController.render();
     expect(cdfHelperMock.renderDashboard).toHaveBeenCalled();
   });
 
   it('should ask helper service to get a new dashboard with passed parameters', function() {
-    spyOn(cdfHelperMock,'getNewDashboard').and.callThrough();
+    spyOn(cdfHelperMock, 'getNewDashboard').and.callThrough();
     cdfDashboardController.setNewDashboard('some/path', 'some/element');
     expect(cdfHelperMock.getNewDashboard).toHaveBeenCalledWith('some/path', 'some/element');
   });

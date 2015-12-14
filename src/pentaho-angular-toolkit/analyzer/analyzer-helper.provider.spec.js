@@ -1,6 +1,9 @@
 describe('Provider: analyzerHelperProvider', function() {
+  'use strict';
 
-  var analyzerHelper, analyzerHelperProvider, $window;
+  var analyzerHelper;
+  var analyzerHelperProvider;
+  var $window;
 
   var handlerCallback;
 
@@ -20,21 +23,19 @@ describe('Provider: analyzerHelperProvider', function() {
     handlerCallback = jasmine.createSpy('handlerCallbackSpy').and.callThrough();
   });
 
-  describe('base path store', function(){
-
-    it('should exist', function() {
-      expect(analyzerHelperProvider.setBasePath).toBeDefined();
-      expect(analyzerHelperProvider.getBasePath).toBeDefined();
-    });
-
-    it('should store the base path value internally in the provider', function(){
-      analyzerHelperProvider.setBasePath('some/path');
-      expect(analyzerHelperProvider.getBasePath()).toBe('some/path');
-      analyzerHelperProvider.setBasePath('another/path');
-      expect(analyzerHelperProvider.getBasePath()).not.toBe('some/path');
-    });
+  it('should exist', function() {
+    expect(analyzerHelperProvider.setBasePath).toBeDefined();
+    expect(analyzerHelperProvider.getBasePath).toBeDefined();
   });
 
+  it('should store the base path value internally in the provider', function() {
+    analyzerHelperProvider.setBasePath('some/path');
+    expect(analyzerHelperProvider.getBasePath()).toBe('some/path');
+
+    analyzerHelperProvider.setBasePath('another/path');
+    expect(analyzerHelperProvider.getBasePath()).not.toBe('some/path');
+
+  });
 
   it('should register frame id and load handler callback', function() {
     analyzerHelper.registerOnLoad('id1', handlerCallback);

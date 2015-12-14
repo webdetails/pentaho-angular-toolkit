@@ -1,13 +1,15 @@
-'use strict';
-
 describe('Directive: cdfDashboardDirective', function() {
+  'use strict';
 
-  var scope, compile, controllerMock, dashMock, element;
+  var scope;
+  var compile;
+  var controllerMock;
+  var dashMock;
+  var element;
 
   function getCompiledElement(scope) {
-    var elem, compiledElem;
-    elem = angular.element('<pat-cdf-dashboard path="{{path}}" events="events" parameters="parameters" ></pat-cdf-dashboard>');
-    compiledElem = compile(elem)(scope);
+    var elem = angular.element('<pat-cdf-dashboard path="{{path}}" events="events" parameters="parameters" ></pat-cdf-dashboard>');
+    var compiledElem = compile(elem)(scope);
     scope.$digest();
 
     return compiledElem;
@@ -29,8 +31,8 @@ describe('Directive: cdfDashboardDirective', function() {
       scope = $rootScope.$new();
     });
 
-    controllerMock = jasmine.createSpyObj('controllerMock', ['setNewDashboard' , 'render']);
-    dashMock = jasmine.createSpyObj('dashMock', ['listenTo' , 'fireChange' , 'setParameter' , 'getParameterValue']);
+    controllerMock = jasmine.createSpyObj('controllerMock', ['setNewDashboard', 'render']);
+    dashMock = jasmine.createSpyObj('dashMock', ['listenTo', 'fireChange', 'setParameter', 'getParameterValue']);
 
     inject(function($q) {
       controllerMock.setNewDashboard.and.callFake(function() {
@@ -38,7 +40,9 @@ describe('Directive: cdfDashboardDirective', function() {
         deferred.resolve(dashMock);
         return deferred.promise;
       });
-      controllerMock.render.and.callFake(function(d) { return d; });
+      controllerMock.render.and.callFake(function(d) {
+        return d;
+      });
     });
 
     element = getCompiledElement(scope);
@@ -54,8 +58,8 @@ describe('Directive: cdfDashboardDirective', function() {
 
     beforeEach(function() {
       scope.objParam = {};
-      scope.parameters = {p1: '"a"' , p2: '0' , p3: 'objParam'};
-      scope.events = {p1: 'callback1(name,data)' , p2: 'callback2(name,data)'};
+      scope.parameters = {p1: '"a"', p2: '0', p3: 'objParam'};
+      scope.events = {p1: 'callback1(name,data)', p2: 'callback2(name,data)'};
       scope.path = 'myPath';
       scope.callback1 = jasmine.createSpy('callback1');
       scope.callback2 = jasmine.createSpy('callback2');
@@ -67,18 +71,20 @@ describe('Directive: cdfDashboardDirective', function() {
     });
 
     it('should ask the controller to set a new dashboard', function() {
-       getCompiledElement(scope);
-       expect(controllerMock.setNewDashboard).toHaveBeenCalledWith(scope.path , element);
-     });
+      getCompiledElement(scope);
+      expect(controllerMock.setNewDashboard).toHaveBeenCalledWith(scope.path, element);
+    });
 
     it('should initialize the parameters in the dashboard', function() {
       getCompiledElement(scope);
 
-      var numberParams = 3, paramValue, paramName;
+      var numberParams = 3;
+      var paramValue;
+      var paramName;
       var calls = dashMock.setParameter.calls.allArgs();
 
       expect(dashMock.setParameter.calls.count()).toEqual(numberParams);
-      for (var i = 0 ; i < numberParams; i++) {
+      for (var i = 0; i < numberParams; i++) {
         paramName = calls[i][0];
         paramValue = scope.$eval(scope.parameters[paramName]);
         expect(paramValue).toBe(calls[i][1]);
@@ -88,15 +94,15 @@ describe('Directive: cdfDashboardDirective', function() {
     it('should register the events in the dashboard', function() {
       getCompiledElement(scope);
 
-      expect(dashMock.listenTo).toHaveBeenCalledWith(dashMock,'all',jasmine.any(Function));
+      expect(dashMock.listenTo).toHaveBeenCalledWith(dashMock, 'all', jasmine.any(Function));
       var callback = dashMock.listenTo.calls.mostRecent().args[2];
 
-      callback('p1' , 'A');
-      expect(scope.callback1).toHaveBeenCalledWith('p1' , 'A');
-      callback('p1' , 1);
-      expect(scope.callback1).toHaveBeenCalledWith('p1' , 1);
+      callback('p1', 'A');
+      expect(scope.callback1).toHaveBeenCalledWith('p1', 'A');
+      callback('p1', 1);
+      expect(scope.callback1).toHaveBeenCalledWith('p1', 1);
       callback('p2', 'A');
-      expect(scope.callback2).toHaveBeenCalledWith('p2' , 'A');
+      expect(scope.callback2).toHaveBeenCalledWith('p2', 'A');
 
     });
 
@@ -123,26 +129,28 @@ describe('Directive: cdfDashboardDirective', function() {
 
       expect(dashMock.fireChange.calls.count()).toBe(0);
 
-      scope.parameters = {p1: '"b"' , p2: '0'};
+      scope.parameters = {p1: '"b"', p2: '0'};
       dashMock.fireChange.calls.reset();
       getCompiledElement(scope);
 
-      var numberParams = 2, paramName, paramValue;
+      var numberParams = 2;
+      var paramName;
+      var paramValue;
       var calls = dashMock.fireChange.calls.allArgs();
 
       expect(dashMock.fireChange.calls.count()).toBe(2);
-      for (var i = 0 ; i < numberParams; i++) {
+      for (var i = 0; i < numberParams; i++) {
         paramName = calls[i][0];
         paramValue = scope.$eval(scope.parameters[paramName]);
         expect(paramValue).toBe(calls[i][1]);
       }
 
-      scope.parameters = {p1: '"a"' , p2: '0'};
+      scope.parameters = {p1: '"a"', p2: '0'};
       dashMock.fireChange.calls.reset();
       getCompiledElement(scope);
 
       expect(dashMock.fireChange.calls.count()).toBe(1);
-      expect(dashMock.fireChange).toHaveBeenCalledWith('p1' , 'a');
+      expect(dashMock.fireChange).toHaveBeenCalledWith('p1', 'a');
 
     });
 

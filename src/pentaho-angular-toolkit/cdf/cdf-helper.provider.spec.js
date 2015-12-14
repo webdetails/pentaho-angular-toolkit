@@ -1,13 +1,20 @@
 describe('Provider: cdfHelperProvider', function() {
+  'use strict';
 
-  var cdfHelper, dashMock, $rootScope, $window;
+  var cdfHelper;
+  var dashMock;
+  var $rootScope;
+  var $window;
 
   beforeEach(function() {
 
     module('pat.cdf', function($provide) {
       $provide.value('dash', {
-        listenToOnce: function(dash, event, callback) { callback(); },
-        render: function() {}
+        listenToOnce: function(dash, event, callback) {
+          callback();
+        },
+        render: function() {
+        }
       });
     });
 
@@ -38,9 +45,12 @@ describe('Provider: cdfHelperProvider', function() {
   it('should pass dashboard path to be loaded by RequireJS and element where the dashboard should be mounted', function() {
 
     var spies = {};
-    spies.mockDash = function(element) {};
-    spies.mockDash = spyOn(spies,'mockDash').and.callThrough();
-    spies.mockRequire = function(paths, callback) { callback(spies.mockDash); };
+    spies.mockDash = function() {
+    };
+    spies.mockDash = spyOn(spies, 'mockDash').and.callThrough();
+    spies.mockRequire = function(paths, callback) {
+      callback(spies.mockDash);
+    };
     spies.mockRequire = spyOn(spies, 'mockRequire').and.callThrough();
 
     $window.require = spies.mockRequire;
@@ -49,18 +59,21 @@ describe('Provider: cdfHelperProvider', function() {
 
     $rootScope.$apply();
 
-    expect(spies.mockRequire).toHaveBeenCalledWith(['some/path'] , jasmine.any(Function));
+    expect(spies.mockRequire).toHaveBeenCalledWith(['some/path'], jasmine.any(Function));
     expect(spies.mockDash).toHaveBeenCalledWith('some/element');
   });
 
   it('should return a new dashboard instance after loaded from given path', function() {
 
-    function mockDash(element) {};
-    function mockRequire(paths, callback) { callback(mockDash); }
+    function mockDash() {
+    }
+    function mockRequire(paths, callback) {
+      callback(mockDash);
+    }
 
     $window.require = mockRequire;
 
-    cdfHelper.getNewDashboard('some/path' , 'some/element').then(function(returnFromPromise) {
+    cdfHelper.getNewDashboard('some/path', 'some/element').then(function(returnFromPromise) {
       expect(returnFromPromise instanceof mockDash).toBe(true);
     });
 

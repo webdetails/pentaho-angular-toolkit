@@ -1,4 +1,5 @@
 describe('Constant: uuid', function() {
+  'use strict';
 
   var uuid;
 

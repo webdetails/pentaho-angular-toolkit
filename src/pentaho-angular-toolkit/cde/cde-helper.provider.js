@@ -4,8 +4,8 @@
   // TODO: Most of this should probably move to a specific endpoints service that the other modules could use
 
   angular.module('pat.cde')
-      .provider('CdeHelper', CdeHelperProvider)
-      .config(config);
+    .provider('CdeHelper', CdeHelperProvider)
+    .config(config);
 
   config.$inject = ['CdeHelperProvider'];
   function config(CdeHelperProvider) {
@@ -54,7 +54,7 @@
      * that controllers and directives don't have to directly interface with
      * {@link http://www.webdetails.pt/ctools/cde/ CDE} using $http.
      */
-    CdeHelper.$inject = [ ];
+    CdeHelper.$inject = [];
     function CdeHelper() {
 
       var service = {

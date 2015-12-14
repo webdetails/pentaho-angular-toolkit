@@ -16,9 +16,9 @@
    * and {@link pat.analyzer} modules.
    */
   angular.module('pat', [
-     'pat.cdf',
-     'pat.cde',
-     'pat.analyzer'
+    'pat.cdf',
+    'pat.cde',
+    'pat.analyzer'
   ]);
 
 })(window.angular);

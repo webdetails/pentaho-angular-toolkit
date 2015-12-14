@@ -8,7 +8,7 @@
    * that are related with {@link http://www.webdetails.pt/ctools/cde/ CDE}.
    */
   angular.module('pat.cde', [
-      'pat.utils'
+    'pat.utils'
   ]);
 
 })(window.angular);

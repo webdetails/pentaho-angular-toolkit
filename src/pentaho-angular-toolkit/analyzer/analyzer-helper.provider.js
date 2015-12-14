@@ -1,14 +1,13 @@
 (function(angular) {
   'use strict';
 
-  var extend = angular.extend;
   var isString = angular.isString;
   var isFunction = angular.isFunction;
   var forEach = angular.forEach;
 
   angular.module('pat.analyzer')
-      .provider('AnalyzerHelper', AnalyzerHelperProvider)
-      .config(config);
+    .provider('AnalyzerHelper', AnalyzerHelperProvider)
+    .config(config);
 
   config.$inject = ['AnalyzerHelperProvider'];
   function config(AnalyzerHelperProvider) {
@@ -47,7 +46,7 @@
     function getAnalysisPath(config) {
       var url = getBasePath() + '/editor';
       var isFirst = true;
-      forEach(config, function(key, value){
+      forEach(config, function(key, value) {
         url += (isFirst ? '?' : '&') + key + '=' + value;
         isFirst = false;
       });
