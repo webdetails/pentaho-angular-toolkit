@@ -2,7 +2,7 @@ env:
   global:
   - GH_USER: francisco-guilherme
   - GH_REPO: pentaho-angular-toolkit
-  - secure: "CRwqa1zIxtYQ1OzsMk8/OMJLPoJ1gRkGV4bwwfTcV1/XLWTxGG2P+OddG5Ipz7TmloFMwl8U9oo+bMTATDS3sGrIQl3frhxEhR/aP5BwfQEEGkcKNVF8LD4IqZ9q6xhqKZeD4TEPZ9OqSpyMBi20DIqxVHsQbJ2oPc7Qv0BP7iZqPFF94ZxqeWhlFjX+W38OOH0Nf0qrLF56S/MCEBDlE0j4f14CSJ8xtNcwwX3Njs7b2lVJBUYH9p1kpn+FfsjTL7unyuWfqvkU6a7yKUOw7oekuRNlT0LDnxIBCowXLWnC+mjDSCcOFUYR42PU03ceJjH4aMTHa5c7nJay2XLu7HRROOxwl+cppHEhb+1YeSdJKWvTGhHdJuejk9YqS5GtzoLD6Rg1wX4qWalRBid9Xu42eyAPBX9HN3wmRSySs3qnN3ZFNswWdoyTTukiZgUgmSF9obL69jrYScVATv5HydnE1xZ8jWrS5taKh5rR7ymSc/Ycsg9FTbudaWK6BfAKbZVmxoVqynP8Kf76Xshav6w0j7+cwu00YTJKHaQABD+1z5O57LfMVchlwT5H1akyll8h7CIessVToUEf5zND34nvEZq+4e8OmG8up6n/6Ofl66TlAPLc+NgyxlzxVKDx6Cke/Dm1TG6pU5SCZ7JR28eBeqDZAMs1JlndV6+DYS0="
+  - secure: "Hza0I5dzrZM4iU137EzKV29TGxH07XUOM98pl4F/JrTuTWsevP14lr48tpCcLGy4d4oytp5Nvodo4g75HZYbw2VYBG4s6rtMXNIEhWTiA0whMyWIoS3J1AesBOkWMzfq/GgxcOju4LDOAxJpZ2NDySUzya8bhS6blmFmZ1rNCroni7G1E6DeEeXS5c6cia9K0CJ11iS2WvqyTKzpGYDPUgm+j3DbXNw0cNI+1PNveo78KQt7BLJSaSDfJDlz9i5v+aMj9hVxsBvIoY4kbdWfQwUUvHWY3RjVhGbLAxpbzemy8WwdFPn1CiCVbXJyIJCpCDO3T9OTlkNrLNbVlLvX/aH8Lm9INblO0grsbrUKOA3P7ws1Gq9wbdFy+8NvEo2XyiKNKGbj6l36R8pBF0BbBlXzJubro7UGereGoZJ0CwvsujdSI6K0z881NjqIgJv8fPDiV9qDR98ZRUX4Nv+jhqCdfokTGbrPbNPmJm0AKrIYmRNHYRxO7LJBK6mUkDZElX9SJ7lj0tglBBZ5MOGyAbldQ/SX28npHLKQRIQfzkKRvc3elwlOjyKhxFqCaqC1LjB0mA2lekECts3J2er2WoN1nDGrz2vh0WWr/di8IrHr4AXnCcknuiWUvqyjowfQxM2lN7g5QZ44FIBQ7Qul5y1dfijzY2V5itvmWyu4nfY="
 
 language: node_js
 node_js:
@@ -20,17 +20,17 @@ script:
 - gulp
 
 before_deploy:
-- gulp release --version $TRAVIS_BRANCH
+- gulp release --version $TRAVIS_TAG
 - cp -r module_dist $GH_REPO
-- zip -r $GH_REPO-$TRAVIS_BRANCH.zip $GH_REPO -x *.git*
+- zip -r $GH_REPO-$TRAVIS_TAG.zip $GH_REPO -x *.git*
 
 deploy:
   provider: releases
   api_key: $GH_TOKEN
-  file: $GH_REPO-$TRAVIS_BRANCH.zip
+  file: $GH_REPO-$TRAVIS_TAG.zip
   on:
     tags: true
-    repo: $GH_USER/$GH_REPO
+    repo: $TRAVIS_REPO_SLUG
 
 after_deploy:
 - bash _scripts/deploy-module.sh
