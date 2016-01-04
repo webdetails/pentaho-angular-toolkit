@@ -59,6 +59,11 @@ on the requirements to embed pentaho cdf dashboards:
 
 - `gulp release` - Bump the version and runs `module` task to rebuild module dist folder. This task is to be used by Travis Ci, to dynamically bump the module version according to tag release number.
 
+
+## Versioning
+
+Version follows Pentaho major and minor version numbers. Patch number is independent.
+
 ## License
 
 MPL 2.0
