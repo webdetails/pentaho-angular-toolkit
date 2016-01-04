@@ -17,7 +17,7 @@ git config user.email "pentaho@pentaho.com"
 # files present with the commit message.
 cp -r ../doc/* .
 git add .
-git commit -m "Pentaho Angular Toolkit Doc $TRAVIS_TAG"
+git commit -m "Pentaho Angular Toolkit Doc $TRAVIS_TAG" --allow-empty
 
 # force push from the current repo's master
 # (all previous history will be lost, since we are overwriting it.)
