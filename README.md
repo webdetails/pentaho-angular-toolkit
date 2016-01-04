@@ -1,15 +1,29 @@
 # Pentaho Angular Toolkit
 
-Angular toolkit to Pentaho CTools dashboards.
+Angular toolkit to Pentaho Platform components.
 
 ## Installing
 
  - `npm install --save pentaho-angular-toolkit` 
  - `bower install --save pentaho-angular-toolkit`
 
-## Usage
+## Documentation
 
-## Requirements 
+Check [http://webdetails.github.io/pentaho-angular-toolkit](Technical Documentation) for more information
+on the modules and components of the library.
+
+## Requirements
+
+The main dependency is, essentially, [http://angularjs.org](angularJS).
+
+Additionally, the cdf dashboard service makes use of [http://requirejs.org](requireJS) to
+assynchronously load the dashboard constructor, and assumes the 'require' global is present
+in the window object.
+
+Most of the times the constructor dependencies also rely on certain requireJS
+configurations, that should be defined in the application. See this link for more information
+on the requirements to embed pentaho cdf dashboards:
+[http://redmine.webdetails.org/projects/cdf/wiki/RequireJS#Embedded-Capabilities](CDF Embedding).
 
 ## Building
 
