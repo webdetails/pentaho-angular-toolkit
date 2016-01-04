@@ -18,8 +18,11 @@ module.exports = function() {
 
   var rootPackage = jsonfile.readFileSync('./package.json');
   var newPackage 	= _.omit(rootPackage, ['devDependencies', 'scripts']);
+  var rootBower = jsonfile.readFileSync('./bower.json');
+  var newBower = _.omit(rootBower, ['devDependencies']);
 
   return gulp.src($.module.files)
-  .pipe(file('package.json', JSON.stringify(newPackage, null, 4)))
-  .pipe(gulp.dest($.module.dist_path));
+    .pipe(file('package.json', JSON.stringify(newPackage, null, 4)))
+    .pipe(file('bower.json', JSON.stringify(newBower, null, 4)))
+    .pipe(gulp.dest($.module.dist_path));
 };
