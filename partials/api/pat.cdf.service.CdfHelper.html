@@ -1,0 +1,38 @@
+<h1><code ng:non-bindable="">CdfHelper</code>
+<div><span class="hint">service in module <code ng:non-bindable="">pat.cdf</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="pat-cdf-service-page pat-cdf-service-cdfhelper-page"><p>The CdfHelper service acts as an abstraction layer so
+that controllers and directives don&#39;t have to directly interface with
+<a href="http://www.webdetails.pt/ctools/cdf/">CDF</a> using $http.</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_getnewdashboard">getNewDashboard(path, element)</h3>
+<div class="getnewdashboard"><div class="pat-cdf-service-page pat-cdf-service-cdfhelper-getnewdashboard-page"><p>This methods fetches a dashboard constructor from the server,
+from a specified path, and instantiates. It returns a promise that, when resolved,
+passes the instantiated dashboard to success handler.</p>
+<p>The services makes use of <a href="http://requirejs.org/">requireJS</a> to assynchronously
+load the dashboard constructor, and assumes the &#39;require&#39; global is present in the
+window object.</p>
+<p>Additionally, most of the times the constructor dependencies rely on certain requireJS
+configurations, that should be defined in the application. See this link for more information
+on the requirements to embed pentaho cdf dashboards:
+<a href="http://redmine.webdetails.org/projects/cdf/wiki/RequireJS#Embedded-Capabilities">CDF Embedding</a></p>
+</div><h5 id="methods_getnewdashboard_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>path</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="pat-cdf-service-page pat-cdf-service-cdfhelper-getnewdashboard-page"><p>A path to a dashboard constructor module to be loaded using RequireJS.</p>
+</div></td></tr><tr><td>element</td><td><a href="" class="label type-hint type-hint-element">element</a></td><td><div class="pat-cdf-service-page pat-cdf-service-cdfhelper-getnewdashboard-page"><p>A DOM element or jquery wrapper element where the dashboard should be mounted.</p>
+</div></td></tr></tbody></table><h5 id="methods_getnewdashboard_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">promise</a></td><td><div class="pat-cdf-service-page pat-cdf-service-cdfhelper-getnewdashboard-page"><p>A promise that will be resolved when the dashboard definition modules is
+returned and a new dashboard instance is created.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_renderdashboard">renderDashboard(dash)</h3>
+<div class="renderdashboard"><h5 id="methods_renderdashboard_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>dash</td><td><a href="" class="label type-hint type-hint-dashboard">dashboard</a></td><td><div class="pat-cdf-service-page pat-cdf-service-cdfhelper-renderdashboard-page"><p>An instance of a cdf dashboard, previously fetched using
+<a href="api/pat.cdf.service:CdfHelper#getnewdashboard">getNewDashboard</a></p>
+</div></td></tr></tbody></table><h5 id="methods_renderdashboard_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">promise</a></td><td><div class="pat-cdf-service-page pat-cdf-service-cdfhelper-renderdashboard-page"><p>A promise that will be resolved when the dashboard finishes rendering, so the
+users of the service know when it is stable to do more operations.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

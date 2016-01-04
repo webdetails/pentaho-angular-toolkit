@@ -1,0 +1,39 @@
+<h1><code ng:non-bindable="">AnalyzerHelper</code>
+<div><span class="hint">service in module <code ng:non-bindable="">pat.analyzer</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-page"><p>The AnalyzerHelper service acts as an abstraction layer so
+that controllers and directives don&#39;t have to directly interface with
+<a href="https://help.pentaho.com/Documentation/6.0/0L0/120/030">Pentaho Analyzer</a>.</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_deregisteronload">deregisterOnLoad(frameId)</h3>
+<div class="deregisteronload"><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-deregisteronload-page"><p>Removes the registered callback for the specified frameId.</p>
+</div><h5 id="methods_deregisteronload_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>frameId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-deregisteronload-page"><p>A string indentifying the frameId for which to remove the callback.</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getanalysispath">getAnalysisPath(config)</h3>
+<div class="getanalysispath"><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-getanalysispath-page"><p>This method takes a configuration object for analyzer and returns the
+url that should be called to create an analyzer view with that configuration.</p>
+</div><h5 id="methods_getanalysispath_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>config</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-getanalysispath-page"><p>A configuration object with parameters controlling some initialization
+aspects of an analyzer frame.</p>
+</div></td></tr></tbody></table><h5 id="methods_getanalysispath_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-getanalysispath-page"><p>The url corresponding to the configuration specified on the configuration object.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getloadhandlers">getLoadHandlers()</h3>
+<div class="getloadhandlers"><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-getloadhandlers-page"><p>Retrieves the container of all the registered callbacks..</p>
+</div><h5 id="methods_getloadhandlers_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-getloadhandlers-page"><p>The map of registered callbacks.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_registeronload">registerOnLoad(frameId, callback)</h3>
+<div class="registeronload"><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-registeronload-page"><p>Registers a callback function to be called when the analyzer view with the
+specified frameId triggers the onLoad event.</p>
+</div><h5 id="methods_registeronload_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>frameId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-registeronload-page"><p>A string identifying the frameId of an analyzer view.</p>
+</div></td></tr><tr><td>callback</td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="pat-analyzer-service-page pat-analyzer-service-analyzerhelper-registeronload-page"><p>The callback to run when the view the the specified frameId loads.</p>
+</div></td></tr></tbody></table></div>
+</li>
+</ul>
+</div>
+</div>

@@ -1,0 +1,40 @@
+<h1><code ng:non-bindable="">CdfDashboardController</code>
+<div><span class="hint">controller in module <code ng:non-bindable="">pat.cdf</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-page"><p>This controller is mainly meant to be used by directives that want
+to load a cdf dashboard and interface with it. It makes use of <a href="api/pat.cdf.service:CdfHelper">CdfHelper</a>
+but it also keeps a register of the controlled dashboard.</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_getdashboard">getDashboard()</h3>
+<div class="getdashboard"><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-getdashboard-page"><p>Gets the controlled dashboard from the controller registry.</p>
+</div><h5 id="methods_getdashboard_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-dashboard">dashboard</a></td><td><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-getdashboard-page"><p>The registered cdf dashboard.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_render">render()</h3>
+<div class="render"><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-render-page"><p>Renders the dashboard registered in the controller. Makes use of
+<a href="api/pat.cdf.service:CdfHelper#renderdashboard">CdfHelper#renderDashboard</a>.</p>
+</div><h5 id="methods_render_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">promise</a></td><td><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-render-page"><p>A promise that will be resolved when the dashboard finishes rendering.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_setdashboard">setDashboard(dash)</h3>
+<div class="setdashboard"><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-setdashboard-page"><p>Sets the controlled cdf dashboard in the controller registry.</p>
+</div><h5 id="methods_setdashboard_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>dash</td><td><a href="" class="label type-hint type-hint-dashboard">dashboard</a></td><td><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-setdashboard-page"><p>A cdf dashboard.</p>
+</div></td></tr></tbody></table><h5 id="methods_setdashboard_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-dashboard">dashboard</a></td><td><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-setdashboard-page"><p>The registered cdf dashboard (for chaining inside promise handlers).</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_setnewdashboard">setNewDashboard(path, element)</h3>
+<div class="setnewdashboard"><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-setnewdashboard-page"><p>Gets a new dashboard instance and sets in in the controller registry.</p>
+</div><h5 id="methods_setnewdashboard_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>path</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-setnewdashboard-page"><p>A path with the dashboard definition module.</p>
+</div></td></tr><tr><td>element</td><td><a href="" class="label type-hint type-hint-element">element</a></td><td><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-setnewdashboard-page"><p>A DOM or jquery element where the dashboard should me mounted.</p>
+</div></td></tr></tbody></table><h5 id="methods_setnewdashboard_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">promise</a></td><td><div class="pat-cdf-controller-page pat-cdf-controller-cdfdashboardcontroller-setnewdashboard-page"><p>A promise that will be resolved when the dashboard definition is
+fetched and a new dashboard is instantianted. The dashboard instance is passed to the
+promise success handler.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>
