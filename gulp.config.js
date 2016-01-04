@@ -13,8 +13,8 @@ module.exports = {
             'README.md',
             'LICENSE',
             'dist/**/*',
-            'module_tmp/**/.*',
-            'module_tmp/**/*'
+            'module_res/**/.*',
+            'module_res/**/*'
         ]
     },
     log:log
