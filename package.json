@@ -1,16 +1,16 @@
 {
   "name": "pentaho-angular-toolkit",
   "version": "0.0.0",
-  "description": "Angular toolkit to Pentaho CTools dashboards.",
+  "description": "Angular toolkit to Pentaho Platform components.",
   "repository": {
     "type": "git",
-    "url": "francisco-guilherme/pentaho-angular-toolkit"
+    "url": "webdetails/pentaho-angular-toolkit"
   },
   "authors": [
     {
       "name": "Gonçalo Neto",
       "email": "goncalo.neto@webdetaisl.pt",
-      "url": "https://github.com/"
+      "url": "https://github.com/gundisalwa"
     },
     {
       "name": "Francisco Guilherme",
@@ -25,7 +25,9 @@
   "scripts": {
     "test": "jasmine"
   },
-  "dependencies": {},
+  "dependencies": {
+    "angular": "^1.4.8"
+  },
   "devDependencies": {
     "angular": "^1.4.8",
     "angular-mocks": "^1.4.8",

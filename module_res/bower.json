@@ -12,10 +12,10 @@
       "homepage": "https://github.com/francisco-guilherme"
     }
   ],
-  "description": "Angular toolkit to Pentaho CTools dashboards.",
+  "description": "Angular toolkit to Pentaho Platform components.",
   "main": "pentaho-angular-toolkit.js",
   "license": "MPL 2.0",
-  "homepage": "francisco-guilherme/pentaho-angular-toolkit",
+  "homepage": "webdetails/pentaho-angular-toolkit",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -23,5 +23,8 @@
     "test",
     "tests",
     "package.json"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.4.8"
+  }
 }
