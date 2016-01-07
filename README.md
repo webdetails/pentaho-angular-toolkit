@@ -6,7 +6,7 @@ Angular toolkit to Pentaho Platform components.
 
 <!-- - `npm install --save pentaho-angular-toolkit` -->
 <!-- - `bower install --save pentaho-angular-toolkit` -->
-Get the latest release from [Releases](https://github.com/gundisalwa/pentaho-angular-toolkit/releases).
+Get the latest release from [Releases](https://github.com/webdetails/pentaho-angular-toolkit/releases).
 
 ## Documentation
 
